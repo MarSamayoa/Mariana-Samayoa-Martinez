@@ -38,7 +38,18 @@ a.port-card{text-decoration:none;color:inherit;display:flex;flex-direction:colum
 .port-demo{display:inline-block;margin-top:.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;padding:.25rem .6rem;border:1px solid rgba(30,96,120,.2);border-radius:3px;transition:all .3s}
 a.port-card:hover .port-demo{background:var(--ocean-mid);color:#fff}
 .skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.55);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
-.voices-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.voice-card{background:#fff;padding:2rem;border-radius:10px;position:relative;border:1px solid rgba(0,0,0,.03)}.voice-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--ocean-light);opacity:.2;position:absolute;top:.6rem;left:1.2rem;line-height:1}.voice-text{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:.8rem}.voice-source{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.exp-subrole {
+  margin-top: 16px;
+  padding-left: 12px;
+  border-left: 2px solid #ddd;
+}
+
+.exp-note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+ .voices-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.voice-card{background:#fff;padding:2rem;border-radius:10px;position:relative;border:1px solid rgba(0,0,0,.03)}.voice-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--ocean-light);opacity:.2;position:absolute;top:.6rem;left:1.2rem;line-height:1}.voice-text{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:.8rem}.voice-source{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
 .contact-center{text-align:center;padding-bottom:3rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
 footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);letter-spacing:.1em;border-top:1px solid var(--sand-warm)}
 @media(max-width:768px){#side-flow{display:none}nav{padding:1rem 1.5rem}.nav-links{display:none}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}}
@@ -47,63 +58,291 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 <body>
 <nav id="nav"><a href="#" class="nav-mark">Mariana Samayoa Martinez</a><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#experience">Journey</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#skills">Expertise</a></li><li><a href="#contact">Contact</a></li></ul></nav>
 <div id="side-flow"><canvas id="side-canvas"></canvas></div>
-<section class="hero" id="hero"><canvas id="flow-canvas"></canvas><div class="hero-content"><h1 class="hero-name">Mariana Samayoa<br>Martinez</h1><p class="hero-tagline">Peacebuilding · Strategy · Grantmaking · Systems · Connection</p></div><div class="hero-scroll-cue"><a href="#about"><span>Explore</span><span class="scroll-line"></span></a></div></section>
+<section class="hero" id="hero">
+  <div class="hero-content">
+    
+    <h1 class="hero-title">Mariana Samayoa Martinez</h1>
+    
+    <p class="hero-subtitle">
+      I work at the intersection of strategy, systems, and impact.
+    </p>
+
+    <p class="hero-description">
+      I focus on how ideas move from concept to execution across teams, turning complex priorities into structures, decisions, and work that holds.
+    </p>
+
+  </div>
+</section>
 <section class="content-section" id="about">
 <div class="section-marker">About</div>
 <div class="about-layout">
 <div class="about-prose">
-<p>Growing up in Guatemala during and after the peace process, I witnessed the long and often unseen work of rebuilding that follows conflict. Those experiences taught me that peace is not a single achievement but an ongoing system of relationships, care, and collective action — continually renewed.</p>
-<p>This understanding has guided my path as a program manager, systems builder, and strategic operator across philanthropic, multilateral, and nonprofit environments. I'm drawn to the connective work — the spaces between strategy and execution, between institutions and the people they serve, between what an organization says it values and how it actually operates.</p>
-<p>Over nine years, I've moved from coordinating projects and programs to designing the internal systems, tools, and processes that help organizations work better. I bring a structural intuition — the ability to read how operational, relational, and strategic layers connect — and translate that into infrastructure that works for people, not against them.</p>
+
+<p>Growing up in Guatemala during and after the peace process, I saw the long and often invisible work that follows conflict. It shaped how I understand peace: not as a single outcome, but as something sustained through relationships, systems, and everyday decisions.</p>
+
+<p>That perspective has guided my work across philanthropic, multilateral, and nonprofit environments. I operate in the space between strategy and execution, where priorities need to translate into something that actually holds across teams and over time.</p>
+
+<p>Over nine years, I’ve moved from coordinating projects to shaping the systems behind them. I focus on how operational, relational, and strategic layers connect, and I design the structures that allow organizations to work more clearly, consistently, and effectively.</p>
+
+<p>I bring a strong systems instinct and a strategic lens. I see where things are not connecting, and I turn that into processes, tools, or ways of working that make the whole system function better.</p>
+
 </div>
+
 <div class="about-aside">
-<div class="aside-quote">"Within liminal spaces — across cultures, disciplines, and perspectives — connection, learning, and transformation truly happen."</div>
+
+<div class="aside-quote">
+"Real change happens in the spaces where systems, people, and decisions meet."
+</div>
+
 <div class="aside-facts">
-<div class="fact-row"><span class="fact-label">Languages</span><span class="fact-value">Spanish (Native) · English (Fluent)</span></div>
-<div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Strategic Operations · Systems Design · Peacebuilding</span></div>
-</div></div></div>
+<div class="fact-row">
+  <span class="fact-label">Languages</span>
+  <span class="fact-value">Spanish (Native) · English (Fluent)</span>
+</div>
+
+<div class="fact-row">
+  <span class="fact-label">Focus</span>
+  <span class="fact-value">Strategy · Systems · Impact</span>
+</div>
+
+</div>
+</div>
+</div>
 </section>
 
 <section class="content-section" id="experience">
 <div class="section-marker">Journey</div>
-<h2 class="section-title">From operations to strategy —<br>each role built on the last</h2>
-<div class="exp-timeline">
-<div class="exp-item"><div class="exp-date">January 2026 — Present</div><div class="exp-role">Officer, Special Initiatives & Strategic Projects</div><div class="exp-org">United Nations Foundation · Delivery Team, Future of Multilateralism</div><div class="exp-summary">Serving on a cross-functional delivery team for a flagship initiative on the future of multilateralism. Coordinating strategic projects with the Executive Office and Chief of Staff — designing processes, building tools, and supporting senior leadership on institutional priorities that cut across the organization.</div><div class="exp-growth">Current: Strategy & institutional delivery</div></div>
-<div class="exp-item"><div class="exp-date">July 2025 — December 2025</div><div class="exp-role">Officer, Special Initiatives & Operations</div><div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div><div class="exp-summary">Expanded beyond grants management to coordinate special initiatives across the organization and with the Executive Office. Led process improvement projects, designed internal tools and dashboards, and convened high-level retreats bringing together member states, UN officials, and external experts on multilateral reform.</div><div class="exp-growth">Growth: From portfolio management → organizational initiatives</div></div>
-<div class="exp-item"><div class="exp-date">July 2024 — June 2025</div><div class="exp-role">Officer & Grants Manager</div><div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div><div class="exp-summary">Managed multi-year grant portfolios totaling over $3M across multiple funding streams. Oversaw 60+ contracts and 130+ annual payments. Launched a Multilateral Insights Project to cultivate cross-team learning, and strengthened grants management practices, data systems, and internal workflows.</div><div class="exp-growth">Foundation: Operational excellence & systems building</div></div>
-<div class="exp-item"><div class="exp-date">May 2023 — June 2024</div><div class="exp-role">Head of Programs & Operations</div><div class="exp-org">Lead-Up International</div><div class="exp-summary">Directed bi-national operations advancing youth-led, trauma-informed peacebuilding across the US and Guatemala. Built grant management, budgeting, M&E, and governance systems from the ground up. Modeled peacebuilding values within the organization itself — centering care, participation, and mutual accountability in internal processes.</div></div>
-<div class="exp-item"><div class="exp-date">August 2021 — May 2023</div><div class="exp-role">Head of Development</div><div class="exp-org">Lead-Up International</div><div class="exp-summary">Increased fundraising revenue by over 50%. Secured the organization's first UN-sponsored grant. Designed and implemented monitoring, evaluation, and learning systems that strengthened both reporting and program impact.</div></div>
-<div class="exp-item"><div class="exp-date">January 2018 — December 2019</div><div class="exp-role">Technical Assistant, Education Sector</div><div class="exp-org">UNESCO Guatemala</div><div class="exp-summary">Coordinated the UNESCO-Malala Centers for Indigenous Girls' Education. Managed donor-funded initiatives, contracting, MEL processes, and designed peacebuilding grant proposals within the UN system.</div></div>
-<div class="exp-item"><div class="exp-date">2016 — 2017</div><div class="exp-role">Peacebuilding Consultant & Researcher</div><div class="exp-org">Government of Guatemala · Polycentric Learning Group</div><div class="exp-summary">Co-designed national curricula on Peace and Human Rights Education. Conducted organizational culture research — where the thread of systems thinking began.</div></div>
-</div></section>
+<h2 class="section-title">Building from execution to strategy</h2>
 
-<section class="content-section" id="portfolio">
-<div class="section-marker">Portfolio</div>
-<h2 class="section-title">Tools I build, problems I solve</h2>
+<div class="exp-timeline">
+
+<!-- UN FOUNDATION (GROUPED ROLE) -->
+<div class="exp-item">
+
+  <div class="exp-date">July 2024 — Present</div>
+  <div class="exp-role">Officer</div>
+  <div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div>
+
+  <p class="exp-note">
+    Role scope expanded from grants management to organizational initiatives and strategic projects.
+  </p>
+
+  <div class="exp-subrole">
+    <strong>Current — Strategic Projects & Institutional Delivery</strong>
+    <p>
+      Operating on a cross-functional delivery team for a flagship initiative on the future of multilateralism. Work directly with the Executive Office and Chief of Staff to coordinate strategic projects and support leadership on institutional priorities that cut across the organization.
+    </p>
+    <div class="exp-focus"><strong>Focus:</strong> Institutional strategy · Cross-team delivery · Executive support</div>
+  </div>
+
+  <div class="exp-subrole">
+    <strong>Expansion — Organizational Initiatives & Operations</strong>
+    <p>
+      Led cross-organizational initiatives, process improvement efforts, and internal systems design. Designed dashboards and tools to support coordination and decision-making across teams. Convened high-level retreats with member states, UN officials, and external experts on multilateral reform.
+    </p>
+    <p>
+      Supported the establishment of a sister organization, contributing to project management, governance setup, and the design of core policies, SOPs, and operating models.
+    </p>
+    <div class="exp-focus"><strong>Focus:</strong> Organizational initiatives · Governance design · Systems & operations</div>
+  </div>
+
+  <div class="exp-subrole">
+    <strong>Foundation — Grants & Systems Management</strong>
+    <p>
+      Managed multi-year grant portfolios exceeding $3M across multiple funding streams, overseeing 60+ contracts and 130+ annual payments.
+    </p>
+    <p>
+      Strengthened grants management practices, data systems, and internal workflows. Launched a Multilateral Insights Project to support cross-team learning and surface organizational insights.
+    </p>
+    <div class="exp-focus"><strong>Focus:</strong> Grants management · Financial oversight · Operational systems</div>
+  </div>
+
+</div>
+
+<!-- LEAD-UP INTERNATIONAL -->
+<div class="exp-item">
+  <div class="exp-date">May 2023 — June 2024</div>
+  <div class="exp-role">Head of Programs & Operations</div>
+  <div class="exp-org">Lead-Up International</div>
+  <div class="exp-summary">
+    Led bi-national operations advancing youth-led, trauma-informed peacebuilding across the US and Guatemala.
+
+    Built grant management, budgeting, MEL, and governance systems from the ground up, shaping how the organization functioned internally. Integrated values of care, participation, and accountability into operational structures.
+  </div>
+</div>
+
+<div class="exp-item">
+  <div class="exp-date">August 2021 — May 2023</div>
+  <div class="exp-role">Head of Development</div>
+  <div class="exp-org">Lead-Up International</div>
+  <div class="exp-summary">
+    Increased fundraising revenue by over 50% and secured the organization’s first UN-sponsored grant.
+
+    Designed and implemented monitoring, evaluation, and learning systems that strengthened both reporting and program impact.
+  </div>
+</div>
+
+<!-- UNESCO -->
+<div class="exp-item">
+  <div class="exp-date">January 2018 — December 2019</div>
+  <div class="exp-role">Technical Assistant, Education Sector</div>
+  <div class="exp-org">UNESCO Guatemala</div>
+  <div class="exp-summary">
+    Coordinated the UNESCO-Malala Centers for Indigenous Girls' Education.
+
+    Managed donor-funded initiatives, contracting, and MEL processes, and contributed to peacebuilding grant design within the UN system.
+  </div>
+</div>
+
+<!-- CONSULTING -->
+<div class="exp-item">
+  <div class="exp-date">2016 — 2017</div>
+  <div class="exp-role">Peacebuilding Consultant & Researcher</div>
+  <div class="exp-org">Government of Guatemala · Polycentric Learning Group</div>
+  <div class="exp-summary">
+    Co-designed national curricula on Peace and Human Rights Education.
+
+    Conducted organizational culture research, where the foundation of systems thinking in practice began.
+  </div>
+</div>
+
+</div>
+</section>
+
+<h2 class="section-title">What I’ve been building</h2>
 <div class="port-philosophy">
-<em>I notice friction, then I build something.</em> I've spent my life moving between worlds: languages, cultures, institutions, ways of knowing. That in-between space is where I do my best thinking. A workflow that's too slow, a dataset no one can actually read, a question that keeps surfacing because the answer lives nowhere useful. I start by asking what people actually need, not what the system assumes they need. Then I teach myself whatever the problem requires and bring others along, because a tool only works if people can actually use it. I'm not afraid of not knowing yet. Sometimes I use LLMs to prototype; always I iterate until the tool earns its place. Some of these I built from nothing; others reshaped what was already there but wasn't serving the people using it.
+
+<em>I’ve built across languages, cultures, countries, fields, and teams.</em> That perspective allows me to connect systems, align people, and translate strategy into something that works in practice.
+
+I focus on where strategy breaks down in execution. Where priorities are unclear, systems don’t connect, or teams are working without a shared structure.
+
+I start by understanding what needs to hold across those layers, then shape the systems, processes, and tools that make that possible.
+
+A few examples below.
+
 </div>
 
 <div class="port-carousel-wrap">
 <div class="port-carousel" id="port-carousel">
  
-<div class="port-card"><div class="port-visual" id="viz-eval"></div><div class="port-body"><div class="port-tag">MEL Systems · Evaluation · Research Design</div><div class="port-name">Organizational MEL Infrastructure</div><div class="port-desc">Built the entire monitoring, evaluation, and learning system for Lead-Up International from scratch — program indicators, logical frameworks, data collection tools, survey instruments, and reporting structures. Then designed and led a comprehensive final evaluation: methodology, focus group guides, thematic coding, baseline/endline analysis, impact stories, and a 40+ page report with 8 annexes.</div><div class="port-tech">Excel · Word · Survey tools · Qualitative coding</div></div></div>
+<div class="port-card">
+  <div class="port-visual" id="viz-eval"></div>
+  <div class="port-body">
+    <div class="port-tag">MEL Systems · Evaluation · Research Design</div>
+    <div class="port-name">MEL System Design & Evaluation</div>
+    <div class="port-desc">
+      Designed and implemented the monitoring, evaluation, and learning system for Lead-Up International.
+
+      Established a shared structure across programs for tracking indicators, collecting data, and reporting consistently. Led the final evaluation, integrating qualitative and quantitative insights into a comprehensive report used for organizational reflection and future planning.
+    </div>
+    <div class="port-tech">Excel · Word · Survey tools · Qualitative coding</div>
+  </div>
+</div>
  
-<div class="port-card"><div class="port-visual" id="viz-dashboard"></div><div class="port-body"><div class="port-tag">Data Visualization · Convening Strategy</div><div class="port-name">Retreat Participation Insights Dashboard</div><div class="port-desc">Interactive dashboard tracking participation patterns, regional representation, gender balance, and attendance trends across high-level diplomatic retreats — supporting convening strategy, stakeholder follow-up, and reporting to leadership.</div><div class="port-tech">Excel (Advanced) · Pivot tables · Dynamic charts</div></div></div>
+<div class="port-card">
+  <div class="port-visual" id="viz-dashboard"></div>
+  <div class="port-body">
+    <div class="port-tag">Data Visualization · Convening Strategy</div>
+    <div class="port-name">Participation Insights Dashboard</div>
+    <div class="port-desc">
+      Developed an interactive dashboard tracking participation patterns, regional representation, gender balance, and attendance trends across high-level diplomatic retreats.
+
+      Consolidated fragmented data into a shared view that informed convening strategy, stakeholder engagement, and leadership reporting.
+    </div>
+    <div class="port-tech">Excel (Advanced) · Pivot tables · Dynamic charts</div>
+  </div>
+</div>
  
-<div class="port-card"><div class="port-visual" id="viz-process"></div><div class="port-body"><div class="port-tag">Process Improvement · Strategic Prioritization</div><div class="port-name">Clearance & Operations Improvement Framework</div><div class="port-desc">Systematized findings from a team feedback session into a structured improvement roadmap. Designed a benefit-vs-complexity prioritization matrix to help leadership sequence six initiatives — from quick wins to longer-term system redesign.</div><div class="port-tech">Visual frameworks · Prioritization matrices</div></div></div>
+<div class="port-card">
+  <div class="port-visual" id="viz-process"></div>
+  <div class="port-body">
+    <div class="port-tag">Process Improvement · Strategic Prioritization</div>
+    <div class="port-name">Operations Improvement Roadmap</div>
+    <div class="port-desc">
+      Synthesized team feedback into a structured improvement roadmap.
+
+      Designed a prioritization framework that enabled leadership to sequence six initiatives, balancing quick operational improvements with longer-term system redesign.
+    </div>
+    <div class="port-tech">Visual frameworks · Prioritization matrices</div>
+  </div>
+</div>
  
-<a class="port-card" href="https://marsamayoa.github.io/Programme-toolkit/" target="_blank" rel="noopener"><div class="port-visual" id="viz-pm"></div><div class="port-body"><div class="port-tag">Project Management · Decision Support</div><div class="port-name">Programme Toolkit</div><div class="port-desc">Browser-based toolkit combining criteria scoring with radar charts, priority matrices, risk registers with live severity tracking, budget monitoring with utilisation charts, and RACI matrices. Designed for teams that need structure without enterprise software overhead.</div><div class="port-tech">HTML/CSS/JS · Chart.js · Built with LLM assistance</div><span class="port-demo">Live demo ↗</span></div></a>
+<a class="port-card" href="https://marsamayoa.github.io/DEMO-program-toolkit/" target="_blank" rel="noopener">
+  <div class="port-visual" id="viz-pm"></div>
+  <div class="port-body">
+    <div class="port-tag">Project Management · Decision Support</div>
+    <div class="port-name">Program Management Toolkit</div>
+    <div class="port-desc">
+      Developed a browser-based toolkit to support project and program management across teams.
+
+      Brings prioritization, risk tracking, budgeting, and role clarity into a single structure, enabling more consistent decision-making and alignment without reliance on complex enterprise systems.
+    </div>
+    <div class="port-tech">HTML/CSS/JS · Chart.js</div>
+    <span class="port-demo">Live demo ↗</span>
+  </div>
+</a>
  
-<a class="port-card" href="https://marsamayoa.github.io/DEMO-Leadership-Profile/" target="_blank" rel="noopener"><div class="port-visual" id="viz-decision"></div><div class="port-body"><div class="port-tag">Assessment · Interactive Tool</div><div class="port-name">Leadership Profile Tool</div><div class="port-desc">Interactive profiling tool for mapping leadership styles across key dimensions — surfacing strengths, growth areas, and patterns through structured self-assessment with visual outputs that support reflection and coaching conversations.</div><div class="port-tech">HTML/CSS/JS · Built with LLM assistance</div><span class="port-demo">Live demo ↗</span></div></a>
+<a class="port-card" href="https://marsamayoa.github.io/DEMO-Leadership-Profile/" target="_blank" rel="noopener">
+  <div class="port-visual" id="viz-decision"></div>
+  <div class="port-body">
+    <div class="port-tag">Assessment · Interactive Tool</div>
+    <div class="port-name">Leadership Profile Tool</div>
+    <div class="port-desc">
+      Designed an interactive tool for mapping leadership styles across key dimensions.
+
+      Translates self-assessment into structured visual outputs that support reflection, coaching conversations, and clearer understanding of leadership patterns.
+    </div>
+    <div class="port-tech">HTML/CSS/JS</div>
+    <span class="port-demo">Live demo ↗</span>
+  </div>
+</a>
  
-<a class="port-card" href="https://marsamayoa.github.io/DEMO-Stakeholder-map/" target="_blank" rel="noopener"><div class="port-visual" id="viz-radar"></div><div class="port-body"><div class="port-tag">Strategy · Relationship Mapping</div><div class="port-name">Stakeholder Mapping Tool</div><div class="port-desc">Visual tool for mapping stakeholders by influence, interest, and relationship quality — helping teams think strategically about engagement, identify gaps, and plan outreach with a clearer picture of the landscape around a project or initiative.</div><div class="port-tech">HTML/CSS/JS · Built with LLM assistance</div><span class="port-demo">Live demo ↗</span></div></a>
+<a class="port-card" href="https://marsamayoa.github.io/DEMO-Stakeholder-map/" target="_blank" rel="noopener">
+  <div class="port-visual" id="viz-radar"></div>
+  <div class="port-body">
+    <div class="port-tag">Strategy · Relationship Mapping</div>
+    <div class="port-name">Stakeholder Mapping Tool</div>
+    <div class="port-desc">
+      Developed a visual tool for mapping stakeholders by influence, interest, and relationship quality.
+
+      Provides a structured view of the stakeholder landscape, supporting more strategic engagement planning and identification of gaps.
+    </div>
+    <div class="port-tech">HTML/CSS/JS</div>
+    <span class="port-demo">Live demo ↗</span>
+  </div>
+</a>
  
-<div class="port-card"><div class="port-visual" id="viz-scrapbook"></div><div class="port-body"><div class="port-tag">Research · Knowledge Management</div><div class="port-name">Research Scrapbook</div><div class="port-desc">Full-stack app for collecting, tagging, and visually organizing research highlights across academic PDFs — with filtering by tag, author, and source, color-coded annotations, auto-generated APA/MLA citations, and a visual scrapboard layout.</div><div class="port-tech">Next.js · React · Supabase · Built with LLM assistance</div></div></div>
+<div class="port-card">
+  <div class="port-visual" id="viz-scrapbook"></div>
+  <div class="port-body">
+    <div class="port-tag">Research · Knowledge Management</div>
+    <div class="port-name">Research Scrapbook App</div>
+    <div class="port-desc">
+      Built a full-stack application for collecting, tagging, and organizing research across academic PDFs.
+
+      Structures fragmented insights into a system that supports synthesis, retrieval, and long-term use of knowledge.
+    </div>
+    <div class="port-tech">Next.js · React · Supabase</div>
+  </div>
+</div>
  
-<div class="port-card"><div class="port-visual" id="viz-finance"></div><div class="port-body"><div class="port-tag">Financial Planning · Scenario Modeling</div><div class="port-name">Financial Scenario Planner</div><div class="port-desc">Multi-scenario financial models for organizational budgeting — projecting revenue, expenses, and sustainability across different funding assumptions to support leadership decision-making, board reporting, and grant proposals.</div><div class="port-tech">Excel (Advanced) · Financial modeling</div></div></div>
+<div class="port-card">
+  <div class="port-visual" id="viz-finance"></div>
+  <div class="port-body">
+    <div class="port-tag">Financial Planning · Scenario Modeling</div>
+    <div class="port-name">Financial Scenario Modeling</div>
+    <div class="port-desc">
+      Developed multi-scenario financial models to support organizational budgeting and planning.
+
+      Enables leadership to explore funding assumptions, understand trade-offs, and make more informed strategic decisions across programs and time horizons.
+    </div>
+    <div class="port-tech">Excel (Advanced) · Financial modeling</div>
+  </div>
+</div>
  
 </div>
+</div>
+ 
 <div class="carousel-nav">
 <button class="carousel-btn" id="carousel-prev" aria-label="Previous">&#8249;</button>
 <div class="carousel-dots" id="carousel-dots"></div>
@@ -113,11 +352,11 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 
 <section class="skills-band" id="skills"><div class="skills-inner">
 <div class="section-marker">Expertise</div>
-<h2 class="section-title">Where I add value</h2>
+<h2 class="section-title">What I work across</h2>
 <div class="skills-columns">
-<div class="skill-col"><h3>Strategic Operations</h3><ul><li>Systems Design & Process Improvement</li><li>Cross-Functional Project Delivery</li><li>Institutional Strategy & Executive Support</li><li>Convening Design & Facilitation</li><li>Tool Development & Data Visualization</li></ul></div>
-<div class="skill-col"><h3>Programs & Impact</h3><ul><li>Project & Program Management</li><li>Monitoring, Evaluation & Learning</li><li>Grant Lifecycle & Compliance</li><li>Financial Stewardship & Budgeting</li><li>Donor Relations & Stewardship</li></ul></div>
-<div class="skill-col"><h3>Software & Building</h3><ul><li>Salesforce (Advanced)</li><li>Excel (Advanced) · Data Dashboards</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>LLM-Assisted Tool Development</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
+<div class="skill-col"><h3>Systems & Strategy</h3><ul><li>Systems Design & Process Improvement</li><li>Cross-Functional Project Delivery</li><li>Strategic Operations & Executive Support</li><li>Convening Design & Facilitation</li><li>Tool Development & Data Visualization</li></ul></div>
+<div class="skill-col"><h3>Programs & Stewardship</h3><ul><li>Project & Program Management</li><li>Monitoring, Evaluation & Learning</li><li>Grant Management & Compliance</li><li>Budgeting & Financial Stewardship</li><li>Donor Relations & Stewardship</li></ul></div>
+<div class="skill-col"><h3>Tools & Platforms</h3><ul><li>Salesforce (Advanced)</li><li>Excel (Advanced) · Dashboards & Modeling</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>LLM-Assisted Tool Development</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
 </div></div></section>
 
 

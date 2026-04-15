@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariana Samayoa Martinez</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--sand:#f2ebe0;--sand-warm:#e8dcc8;--ocean-abyss:#0c1e2b;--ocean-deep:#14384d;--ocean-mid:#1e6078;--ocean-light:#3a9cb8;--ocean-bright:#6ec4d8;--text-dark:#1a2626;--text-mid:#4a5c5c;--text-light:#7a8e8e;--accent:#c07848;--accent-light:#d89868}
+html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(--sand);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.hero{position:relative;width:100%;height:100vh;min-height:700px;overflow:hidden;background:#f0e8d8}
+#flow-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;pointer-events:none;text-align:center;padding:2rem}
+.hero-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.8rem,7.5vw,6.5rem);color:rgba(15,22,28,.95);letter-spacing:-.01em;line-height:1.08;text-shadow:0 0 20px rgba(240,232,216,.8),0 0 40px rgba(240,232,216,.4)}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.1rem,2.5vw,1.7rem);color:rgba(15,25,30,.65);margin-top:.7em;letter-spacing:.04em;text-shadow:0 0 16px rgba(240,232,216,.7)}
+.hero-scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;pointer-events:auto}
+.hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.25);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;font-weight:400}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scaleY(.6);opacity:.3}50%{transform:scaleY(1);opacity:.8}}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:all .5s}nav.scrolled{background:rgba(242,235,224,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.05)}.nav-mark{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:rgba(15,22,28,.8);text-decoration:none;letter-spacing:.04em;transition:color .4s}nav.scrolled .nav-mark{color:var(--text-dark)}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(15,22,28,.55);text-decoration:none;font-weight:400;transition:color .3s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}.nav-links a:hover::after{width:100%}nav.scrolled .nav-links a{color:var(--text-light)}.nav-links a:hover{color:var(--accent)}
+#side-flow{position:fixed;left:0;top:0;width:48px;height:100vh;z-index:10;pointer-events:none;opacity:0;transition:opacity .8s}#side-flow.visible{opacity:1}#side-flow canvas{display:block;width:48px;height:100vh}
+.content-section{padding:4rem 2rem 4rem 5.5rem;max-width:1140px;margin:0 auto}.section-marker{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}.section-marker::before{content:'';width:24px;height:1px;background:var(--accent)}.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--text-dark);margin-bottom:1.5rem}
+.about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:2.5rem}.aside-facts{display:flex;flex-direction:column;gap:1.1rem}.fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}
+.exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}.exp-growth{display:inline-block;margin-top:.6rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;padding:.3rem .7rem;border:1px solid rgba(30,96,120,.2);border-radius:4px}
+.port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:700px;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400}
+.port-carousel-wrap{position:relative;overflow:hidden;margin:0 -2rem;padding:0 2rem}
+.port-carousel{display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:1rem}
+.port-carousel::-webkit-scrollbar{display:none}
+.port-card{background:#fff;border-radius:10px;overflow:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease;cursor:default;flex:0 0 320px;scroll-snap-align:start}
+.port-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(12,30,43,.08)}.port-visual{height:160px;position:relative;overflow:hidden}.port-visual canvas{width:100%;height:100%;display:block}.port-body{padding:1.2rem 1.3rem}.port-tag{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.3rem}.port-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--text-dark);margin-bottom:.3rem}.port-desc{font-size:.82rem;color:var(--text-mid);line-height:1.6;font-weight:300}.port-tech{font-size:.68rem;color:var(--text-light);margin-top:.4rem;font-style:italic}
+.carousel-nav{display:flex;justify-content:center;gap:.6rem;margin-top:1.2rem}
+.carousel-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--sand-warm);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;color:var(--text-light);font-size:.85rem}
+.carousel-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
+.carousel-dots{display:flex;align-items:center;gap:.4rem}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--sand-warm);border:none;cursor:pointer;transition:all .3s;padding:0}
+.carousel-dot.active{background:var(--accent);width:18px;border-radius:3px}
+.skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.55);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
+.voices-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.voice-card{background:#fff;padding:2rem;border-radius:10px;position:relative;border:1px solid rgba(0,0,0,.03)}.voice-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--ocean-light);opacity:.2;position:absolute;top:.6rem;left:1.2rem;line-height:1}.voice-text{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:.8rem}.voice-source{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.contact-center{text-align:center;padding-bottom:3rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
+footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);letter-spacing:.1em;border-top:1px solid var(--sand-warm)}
+@media(max-width:768px){#side-flow{display:none}nav{padding:1rem 1.5rem}.nav-links{display:none}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}}
+</style>
+</head>
+<body>
+<nav id="nav"><a href="#" class="nav-mark">Mariana Samayoa Martinez</a><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#experience">Journey</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#skills">Expertise</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<div id="side-flow"><canvas id="side-canvas"></canvas></div>
+<section class="hero" id="hero"><canvas id="flow-canvas"></canvas><div class="hero-content"><h1 class="hero-name">Mariana Samayoa<br>Martinez</h1><p class="hero-tagline">Peacebuilding · Strategy · Grantmaking · Systems · Connection</p></div><div class="hero-scroll-cue"><a href="#about"><span>Explore</span><span class="scroll-line"></span></a></div></section>
+<section class="content-section" id="about">
+<div class="section-marker">About</div>
+<div class="about-layout">
+<div class="about-prose">
+<p>Growing up in Guatemala during and after the peace process, I witnessed the long and often unseen work of rebuilding that follows conflict. Those experiences taught me that peace is not a single achievement but an ongoing system of relationships, care, and collective action — continually renewed.</p>
+<p>This understanding has guided my path as a program manager, systems builder, and strategic operator across philanthropic, multilateral, and nonprofit environments. I'm drawn to the connective work — the spaces between strategy and execution, between institutions and the people they serve, between what an organization says it values and how it actually operates.</p>
+<p>Over nine years, I've moved from coordinating projects and programs to designing the internal systems, tools, and processes that help organizations work better. I bring a structural intuition — the ability to read how operational, relational, and strategic layers connect — and translate that into infrastructure that works for people, not against them.</p>
+</div>
+<div class="about-aside">
+<div class="aside-quote">"Within liminal spaces — across cultures, disciplines, and perspectives — connection, learning, and transformation truly happen."</div>
+<div class="aside-facts">
+<div class="fact-row"><span class="fact-label">Based in</span><span class="fact-value">New York, USA</span></div>
+<div class="fact-row"><span class="fact-label">Education</span><span class="fact-value">MA Peace & Conflict Studies, Innsbruck</span></div>
+<div class="fact-row"><span class="fact-label">Languages</span><span class="fact-value">Spanish (Native) · English (Fluent)</span></div>
+<div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Strategic Operations · Systems Design · Peacebuilding</span></div>
+</div></div></div>
+</section>
+
+<section class="content-section" id="experience">
+<div class="section-marker">Journey</div>
+<h2 class="section-title">From operations to strategy —<br>each role built on the last</h2>
+<div class="exp-timeline">
+<div class="exp-item"><div class="exp-date">January 2026 — Present</div><div class="exp-role">Officer, Special Initiatives & Strategic Projects</div><div class="exp-org">United Nations Foundation · Delivery Team, Future of Multilateralism</div><div class="exp-summary">Serving on a cross-functional delivery team for a flagship initiative on the future of multilateralism. Coordinating strategic projects with the Executive Office and Chief of Staff — designing processes, building tools, and supporting senior leadership on institutional priorities that cut across the organization.</div><div class="exp-growth">Current: Strategy & institutional delivery</div></div>
+<div class="exp-item"><div class="exp-date">July 2025 — December 2025</div><div class="exp-role">Officer, Special Initiatives & Operations</div><div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div><div class="exp-summary">Expanded beyond grants management to coordinate special initiatives across the organization and with the Executive Office. Led process improvement projects, designed internal tools and dashboards, and convened high-level retreats bringing together member states, UN officials, and external experts on multilateral reform.</div><div class="exp-growth">Growth: From portfolio management → organizational initiatives</div></div>
+<div class="exp-item"><div class="exp-date">July 2024 — June 2025</div><div class="exp-role">Officer & Grants Manager</div><div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div><div class="exp-summary">Managed multi-year grant portfolios totaling over $3M across multiple funding streams. Oversaw 60+ contracts and 130+ annual payments. Launched a Multilateral Insights Project to cultivate cross-team learning, and strengthened grants management practices, data systems, and internal workflows.</div><div class="exp-growth">Foundation: Operational excellence & systems building</div></div>
+<div class="exp-item"><div class="exp-date">May 2023 — June 2024</div><div class="exp-role">Head of Programs & Operations</div><div class="exp-org">Lead-Up International</div><div class="exp-summary">Directed bi-national operations advancing youth-led, trauma-informed peacebuilding across the US and Guatemala. Built grant management, budgeting, M&E, and governance systems from the ground up. Modeled peacebuilding values within the organization itself — centering care, participation, and mutual accountability in internal processes.</div></div>
+<div class="exp-item"><div class="exp-date">August 2021 — May 2023</div><div class="exp-role">Head of Development</div><div class="exp-org">Lead-Up International</div><div class="exp-summary">Increased fundraising revenue by over 50%. Secured the organization's first UN-sponsored grant. Designed and implemented monitoring, evaluation, and learning systems that strengthened both reporting and program impact.</div></div>
+<div class="exp-item"><div class="exp-date">January 2018 — December 2019</div><div class="exp-role">Technical Assistant, Education Sector</div><div class="exp-org">UNESCO Guatemala</div><div class="exp-summary">Coordinated the UNESCO-Malala Centers for Indigenous Girls' Education. Managed donor-funded initiatives, contracting, MEL processes, and designed peacebuilding grant proposals within the UN system.</div></div>
+<div class="exp-item"><div class="exp-date">2016 — 2017</div><div class="exp-role">Peacebuilding Consultant & Researcher</div><div class="exp-org">Government of Guatemala · Polycentric Learning Group</div><div class="exp-summary">Co-designed national curricula on Peace and Human Rights Education. Conducted organizational culture research — where the thread of systems thinking began.</div></div>
+</div></section>
+
+<section class="content-section" id="portfolio">
+<div class="section-marker">Portfolio</div>
+<h2 class="section-title">Tools I build, problems I solve</h2>
+<div class="port-philosophy">
+<em>I'm doing the work — and I notice the friction.</em> A process that takes too long, a question that keeps getting re-asked, a team that can't see its own data. So I build something. Sometimes it starts as a tool for myself — a way to track what I'm managing, or to make sense of information coming from multiple directions. Then it becomes useful for the team, then for leadership. I've learned to let go fast: what I think is useful might not be for others. So I make things, try them, listen, iterate. I leverage LLMs to troubleshoot and build, I teach myself whatever the problem requires. Some of these tools I built at Lead-Up, where the organization had no systems and I created everything from scratch. Others I built at the UN Foundation, where the challenge was improving what existed.
+</div>
+
+<div class="port-carousel-wrap">
+<div class="port-carousel" id="port-carousel">
+
+<div class="port-card"><div class="port-visual" id="viz-eval"></div><div class="port-body"><div class="port-tag">MEL Systems · Evaluation · Research Design</div><div class="port-name">Organizational MEL Infrastructure</div><div class="port-desc">Built the entire monitoring, evaluation, and learning system for Lead-Up International from scratch — program indicators, logical frameworks, data collection tools, survey instruments, and reporting structures. Then designed and led a comprehensive final evaluation: methodology, focus group guides, thematic coding, baseline/endline analysis, impact stories, and a 40+ page report with 8 annexes.</div><div class="port-tech">Excel · Word · Survey tools · Qualitative coding</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-dashboard"></div><div class="port-body"><div class="port-tag">Data Visualization · Convening Strategy</div><div class="port-name">Retreat Participation Insights Dashboard</div><div class="port-desc">Interactive dashboard tracking participation patterns, regional representation, gender balance, and attendance trends across high-level diplomatic retreats — supporting convening strategy, stakeholder follow-up, and reporting to leadership.</div><div class="port-tech">Excel (Advanced) · Pivot tables · Dynamic charts</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-process"></div><div class="port-body"><div class="port-tag">Process Improvement · Strategic Prioritization</div><div class="port-name">Clearance & Operations Improvement Framework</div><div class="port-desc">Systematized findings from a team feedback session into a structured improvement roadmap. Designed a benefit-vs-complexity prioritization matrix to help leadership sequence six initiatives — from quick wins to longer-term system redesign.</div><div class="port-tech">Visual frameworks · Prioritization matrices</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-decision"></div><div class="port-body"><div class="port-tag">Decision Support · Interactive Tool</div><div class="port-name">Decision Maker Helper</div><div class="port-desc">Structured decision-support tool with courses-of-action comparison, criteria scoring with live radar charts, priority heatmaps, and requirements tracking — helping leadership think through complex choices with data instead of instinct alone.</div><div class="port-tech">HTML/CSS/JS · Chart.js · Built with LLM assistance</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-pm"></div><div class="port-body"><div class="port-tag">Project Management · Interactive Tool</div><div class="port-name">Project Management Toolkit</div><div class="port-desc">Lightweight browser-based PM tool with deliverable tracking, risk logs, budget monitoring with spend charts, RACI matrices, and Gantt timelines — designed for teams that need structure without enterprise software overhead.</div><div class="port-tech">HTML/CSS/JS · Chart.js · Built with LLM assistance</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-scrapbook"></div><div class="port-body"><div class="port-tag">Research · Knowledge Management</div><div class="port-name">Research Scrapbook</div><div class="port-desc">Full-stack app for collecting, tagging, and visually organizing research highlights across academic PDFs — with filtering by tag, author, and source, color-coded annotations, auto-generated APA/MLA citations, and a visual scrapboard layout.</div><div class="port-tech">Next.js · React · Supabase · Built with LLM assistance</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-radar"></div><div class="port-body"><div class="port-tag">Data Visualization · Comparative Analysis</div><div class="port-name">Candidate Assessment Visualization</div><div class="port-desc">Radar-chart tool for evaluating and overlaying candidates across institutional pillars — with pillar breakdowns, comparative scoring, and downloadable outputs for leadership briefings.</div><div class="port-tech">HTML/CSS/JS · Chart.js · Built with LLM assistance</div></div></div>
+
+<div class="port-card"><div class="port-visual" id="viz-finance"></div><div class="port-body"><div class="port-tag">Financial Planning · Scenario Modeling</div><div class="port-name">Financial Scenario Planner</div><div class="port-desc">Multi-scenario financial models for organizational budgeting — projecting revenue, expenses, and sustainability across different funding assumptions to support leadership decision-making, board reporting, and grant proposals.</div><div class="port-tech">Excel (Advanced) · Financial modeling</div></div></div>
+
+</div>
+<div class="carousel-nav">
+<button class="carousel-btn" id="carousel-prev" aria-label="Previous">&#8249;</button>
+<div class="carousel-dots" id="carousel-dots"></div>
+<button class="carousel-btn" id="carousel-next" aria-label="Next">&#8250;</button>
+</div>
+</div></section>
+
+<section class="skills-band" id="skills"><div class="skills-inner">
+<div class="section-marker">Expertise</div>
+<h2 class="section-title">Where I add value</h2>
+<div class="skills-columns">
+<div class="skill-col"><h3>Strategic Operations</h3><ul><li>Systems Design & Process Improvement</li><li>Cross-Functional Project Delivery</li><li>Institutional Strategy & Executive Support</li><li>Convening Design & Facilitation</li><li>Tool Development & Data Visualization</li></ul></div>
+<div class="skill-col"><h3>Programs & Impact</h3><ul><li>Project & Program Management</li><li>Monitoring, Evaluation & Learning</li><li>Grant Lifecycle & Compliance</li><li>Financial Stewardship & Budgeting</li><li>Donor Relations & Stewardship</li></ul></div>
+<div class="skill-col"><h3>Software & Building</h3><ul><li>Salesforce (Advanced)</li><li>Excel (Advanced) · Data Dashboards</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>LLM-Assisted Tool Development</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
+</div></div></section>
+
+
+<section class="content-section contact-center" id="contact">
+<div class="section-marker" style="justify-content:center">Get in Touch</div>
+<h2 class="section-title">Let's connect</h2>
+<div class="contact-row">
+<a href="https://www.linkedin.com/in/mariana-samayoa-mar/" class="contact-pill" target="_blank" rel="noopener">LinkedIn</a>
+</div></section>
+<footer>&copy; 2026 Mariana Samayoa Martinez</footer>
+
+<script>
+// ═══ SHARED NOISE ═══
+const P=new Uint8Array(512);for(let i=0;i<256;i++)P[i]=i;
+for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));[P[i],P[j]]=[P[j],P[i]]}
+for(let i=0;i<256;i++)P[i+256]=P[i];
+function fade(t){return t*t*t*(t*(t*6-15)+10)}
+function lerp(a,b,t){return a+t*(b-a)}
+function grad(h,x,y){const v=h&3;return((v&1)?-x:x)+((v&2)?-y:y)}
+function noise(x,y){const xi=Math.floor(x)&255,yi=Math.floor(y)&255,xf=x-Math.floor(x),yf=y-Math.floor(y),u=fade(xf),v=fade(yf);return lerp(lerp(grad(P[P[xi]+yi],xf,yf),grad(P[P[xi+1]+yi],xf-1,yf),u),lerp(grad(P[P[xi]+yi+1],xf,yf-1),grad(P[P[xi+1]+yi+1],xf-1,yf-1),u),v)}
+const PAL=[[245,225,150],[248,218,130],[240,212,175],[242,200,145],[238,190,155],[225,165,145],[208,145,135],[195,130,130],[185,135,145],[165,120,145],[148,165,175],[95,145,165],[75,125,155],[65,110,145],[85,130,160],[115,155,145],[155,178,140],[165,182,155],[205,198,165],[225,215,170]];
+function pickColor(x,y,w,h){const n=noise(x*.002,y*.002)*.5+.5;const b=Math.max(0,Math.min(1,y/h));const idx=Math.max(0,Math.min(PAL.length-1,Math.floor((Math.max(0,Math.min(1,n))*.4+b*.6)*(PAL.length-1))));const c=PAL[idx];return[Math.min(255,Math.max(0,c[0]+(Math.random()*16-8))),Math.min(255,Math.max(0,c[1]+(Math.random()*16-8))),Math.min(255,Math.max(0,c[2]+(Math.random()*16-8)))]}
+
+// ═══ HERO FLOW FIELD ═══
+(()=>{
+const canvas=document.getElementById('flow-canvas'),ctx=canvas.getContext('2d');
+let W,H,dpr,ft=0,mouseX=-1,mouseY=-1;
+const colorSpots=[];
+function getAngle(x,y){return noise(x*.0025+ft*.012,y*.0025)*Math.PI*2+noise(x*.005+100,y*.005+ft*.009)*Math.PI*.8+noise(x*.00125+200+ft*.006,y*.00125+200)*Math.PI*.4}
+const SC=500;const strokes=[];
+class Stroke{constructor(){this.init()}
+init(){this.x=Math.random()*W;this.y=Math.random()*H;const c=this.spotColor()||pickColor(this.x,this.y,W,H);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.035+Math.random()*.065;this.lw=1+Math.random()*3;this.life=0;this.maxLife=80+Math.random()*200;this.speed=.5+Math.random()*.8;this.px=this.x;this.py=this.y}
+spotColor(){for(const s of colorSpots){const dx=this.x-s.x,dy=this.y-s.y;if(dx*dx+dy*dy<s.r*s.r&&Math.random()<.6){const c=s.color;return[c[0]+(Math.random()*20-10)|0,c[1]+(Math.random()*20-10)|0,c[2]+(Math.random()*20-10)|0]}}return null}
+update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||this.x<-20||this.x>W+20||this.y<-20||this.y>H+20){this.init();return}let a=getAngle(this.x,this.y);if(mouseX>=0){const dx=mouseX-this.x,dy=mouseY-this.y;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<300){const pull=Math.pow(1-dist/300,1.5);this.speed=(.5+Math.random()*.8)*(1+pull*2);a=a*(1-pull*.4)+Math.atan2(dy,dx)*pull*.4}}this.x+=Math.cos(a)*this.speed;this.y+=Math.sin(a)*this.speed}
+draw(){ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.alpha})`;ctx.lineWidth=this.lw;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke()}}
+function resize(){dpr=Math.min(devicePixelRatio||1,2);W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#f0e8d8';ctx.fillRect(0,0,W,H);strokes.length=0;for(let i=0;i<SC;i++)strokes.push(new Stroke())}
+let fc=0;
+function frame(){fc++;ft=fc*.015;if(fc%100===0){ctx.fillStyle='rgba(240,232,216,.018)';ctx.fillRect(0,0,W,H)}for(const s of strokes){s.update();s.draw()}for(let i=colorSpots.length-1;i>=0;i--){colorSpots[i].age++;if(colorSpots[i].age>600)colorSpots.splice(i,1)}requestAnimationFrame(frame)}
+resize();requestAnimationFrame(frame);window.addEventListener('resize',resize);
+const heroEl=document.querySelector('.hero');
+heroEl.addEventListener('mousemove',e=>{const r=heroEl.getBoundingClientRect();mouseX=(e.clientX-r.left)/r.width*W;mouseY=(e.clientY-r.top)/r.height*H});
+heroEl.addEventListener('mouseleave',()=>{mouseX=-1;mouseY=-1});
+heroEl.addEventListener('click',e=>{const r=heroEl.getBoundingClientRect();const cx=(e.clientX-r.left)/r.width*W,cy=(e.clientY-r.top)/r.height*H;const c=PAL[Math.floor(Math.random()*PAL.length)];colorSpots.push({x:cx,y:cy,r:180+Math.random()*120,color:c,age:0});for(let i=0;i<30;i++){const s=new Stroke();s.x=cx+Math.random()*60-30;s.y=cy+Math.random()*60-30;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.08;s.lw=1.5+Math.random()*3;strokes.push(s)}while(strokes.length>700)strokes.shift()});
+})();
+
+// ═══ SIDE PANEL FLOW FIELD ═══
+(()=>{
+const canvas=document.getElementById('side-canvas'),ctx=canvas.getContext('2d');
+if(!canvas||!ctx)return;
+let W=48,H,dpr,ft=0;const strokes=[];const SC=60;
+function getAngle(x,y){const sy=window.scrollY*.08;return noise(x*.005+ft*.008,y*.001+sy*.0006+ft*.005)*Math.PI*2+noise(x*.01+50,y*.003+sy*.0003)*Math.PI}
+class S{constructor(){this.init()}
+init(){this.x=Math.random()*W;this.y=Math.random()*H;const sy=window.scrollY;const scrollPhase=sy*.0003;const c=pickColor(this.x+scrollPhase*200,this.y+sy*.15,W*10,H*3);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.04+Math.random()*.06;this.lw=.6+Math.random()*2;this.life=0;this.maxLife=120+Math.random()*250;this.speed=.2+Math.random()*.35;this.px=this.x;this.py=this.y}
+update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||this.y<-10||this.y>H+10||this.x<-10||this.x>W+10){this.init();return}const a=getAngle(this.x,this.y+window.scrollY*.06);this.x+=Math.cos(a)*this.speed;this.y+=Math.sin(a)*this.speed+.1}
+draw(){ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.alpha})`;ctx.lineWidth=this.lw;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke()}}
+function resize(){dpr=Math.min(devicePixelRatio||1,2);W=48;H=window.innerHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#f0e8d8';ctx.fillRect(0,0,W,H);strokes.length=0;for(let i=0;i<SC;i++)strokes.push(new S())}
+let fc=0,lastScroll=0;
+function frame(){fc++;ft=fc*.012;const curScroll=window.scrollY;const scrollDelta=Math.abs(curScroll-lastScroll);lastScroll=curScroll;if(scrollDelta>5){const refreshCount=Math.min(8,Math.floor(scrollDelta/10));for(let i=0;i<refreshCount&&i<strokes.length;i++){strokes[Math.floor(Math.random()*strokes.length)].init()}}if(fc%50===0){ctx.fillStyle='rgba(240,232,216,.04)';ctx.fillRect(0,0,W,H)}for(const s of strokes){s.update();s.draw()}requestAnimationFrame(frame)}
+resize();requestAnimationFrame(frame);window.addEventListener('resize',resize);
+})();
+
+// ═══ PORTFOLIO CANVASES ═══
+function initViz(id,fn){const el=document.getElementById(id);if(!el)return;const c=document.createElement('canvas');el.appendChild(c);const d=Math.min(devicePixelRatio||1,2);const w=el.clientWidth,h=el.clientHeight;c.width=w*d;c.height=h*d;const x=c.getContext('2d');(function lp(t){x.setTransform(d,0,0,d,0,0);fn(x,w,h,t);requestAnimationFrame(lp)})(0)}
+initViz('viz-eval',(c,w,h,t)=>{c.fillStyle='#e8e0d4';c.fillRect(0,0,w,h);[{x:w*.06,y:h*.06},{x:w*.22,y:h*.04},{x:w*.42,y:h*.08},{x:w*.62,y:h*.03},{x:w*.78,y:h*.07}].forEach((p,i)=>{const b=Math.sin(t*.0006+i*1.3)*2;c.fillStyle='#fff';c.shadowColor='rgba(0,0,0,.05)';c.shadowBlur=6;c.beginPath();c.roundRect(p.x,p.y+b,w*.18,h*.8,4);c.fill();c.shadowBlur=0;['rgba(173,216,230,.5)','rgba(255,182,193,.45)'].forEach((cl,l)=>{c.fillStyle=cl;c.fillRect(p.x+5,p.y+b+26+l*24,w*.18-10,7)});for(let l=0;l<7;l++){c.fillStyle=`rgba(26,38,38,${.04+l*.008})`;c.fillRect(p.x+6,p.y+b+10+l*12,w*.18-12-((l*7+i*13)%20),2)}})});
+initViz('viz-dashboard',(c,w,h,t)=>{c.fillStyle='#2a5a6a';c.fillRect(0,0,w,h);for(let i=0;i<8;i++){const bh=(.25+Math.sin(t*.002+i*.9)*.18)*h*.65;const bw=w/20;const x=(w-8*bw*1.8)/2+i*bw*1.8;c.fillStyle=i%3===0?'rgba(216,152,104,.55)':'rgba(110,196,216,.4)';c.beginPath();c.roundRect(x,h-24-bh,bw,bh,3);c.fill()}});
+initViz('viz-process',(c,w,h,t)=>{c.fillStyle='#ede6da';c.fillRect(0,0,w,h);const cl=['#2a7a5a','#d89868','#c0392b','#3a9cb8','#c07848','#1e6078'];for(let i=0;i<6;i++)for(let j=0;j<4;j++){const x=w*.12+i*(w*.76/5),y=h*.15+j*(h*.7/3);const p=Math.sin(t*.001+i*.7+j*.5)*.5+.5;c.fillStyle=cl[(i+j)%6];c.globalAlpha=.3+p*.3;c.beginPath();c.arc(x,y,5+p*4,0,Math.PI*2);c.fill()}c.globalAlpha=1});
+initViz('viz-decision',(c,w,h,t)=>{c.fillStyle='#b87040';c.fillRect(0,0,w,h);const cx=w/2,cy=h/2,r=Math.min(w,h)*.32;c.fillStyle='rgba(255,255,255,.1)';c.beginPath();for(let i=0;i<6;i++){const a=Math.PI*2*i/6-Math.PI/2;c.lineTo(cx+Math.cos(a)*r*(.4+Math.sin(t*.001+i)*.2),cy+Math.sin(a)*r*(.4+Math.sin(t*.001+i)*.2))}c.closePath();c.fill();c.strokeStyle='rgba(255,255,255,.25)';c.lineWidth=1.5;c.stroke()});
+initViz('viz-pm',(c,w,h,t)=>{c.fillStyle='#1e5060';c.fillRect(0,0,w,h);for(let i=0;i<5;i++){const y=28+i*28,s=w*.1+Math.sin(i*1.3)*.1*w,bw=w*(.2+Math.sin(t*.001+i)*.08);c.fillStyle=i===2?'rgba(216,152,104,.5)':'rgba(110,196,216,.35)';c.beginPath();c.roundRect(s,y+6,bw,14,3);c.fill()}});
+initViz('viz-scrapbook',(c,w,h,t)=>{c.fillStyle='#ede8de';c.fillRect(0,0,w,h);[{x:.08,y:.1,w:.36,h:.32},{x:.52,y:.06,w:.4,h:.36},{x:.06,y:.52,w:.42,h:.32},{x:.5,y:.48,w:.44,h:.4}].forEach((b,i)=>{const o=Math.sin(t*.0008+i*1.5)*3;c.fillStyle=i%2?'rgba(192,120,72,.08)':'rgba(42,106,122,.1)';c.beginPath();c.roundRect(b.x*w+o,b.y*h,b.w*w,b.h*h,5);c.fill()})});
+initViz('viz-radar',(c,w,h,t)=>{c.fillStyle='#2a6050';c.fillRect(0,0,w,h);const cx=w/2,cy=h/2,r=Math.min(w,h)*.35;[[.5,.7,.6,.8,.5,.65,.7,.55,'rgba(110,196,216,.2)'],[.7,.5,.8,.6,.7,.5,.55,.65,'rgba(216,152,104,.2)']].forEach(s=>{c.fillStyle=s[8];c.beginPath();for(let i=0;i<8;i++){const a=Math.PI*2*i/8-Math.PI/2;c.lineTo(cx+Math.cos(a)*r*(s[i]+Math.sin(t*.001+i)*.05),cy+Math.sin(a)*r*(s[i]+Math.sin(t*.001+i)*.05))}c.closePath();c.fill()})});
+initViz('viz-finance',(c,w,h,t)=>{c.fillStyle='#2a4a5a';c.fillRect(0,0,w,h);[{cl:'rgba(110,196,216,.5)',b:.38},{cl:'rgba(216,152,104,.5)',b:.52},{cl:'rgba(200,230,232,.35)',b:.65}].forEach((s,si)=>{c.strokeStyle=s.cl;c.lineWidth=2;c.beginPath();for(let x=0;x<12;x++){const px=w*.08+x*(w*.84/11);const py=h*s.b+Math.sin(t*.0008+x*.5+si*2)*h*.08;x===0?c.moveTo(px,py):c.lineTo(px,py)}c.stroke()})});
+
+// ═══ NAV + SCROLL + SIDE PANEL VISIBILITY ═══
+const nav=document.getElementById('nav');
+const sideFlow=document.getElementById('side-flow');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>80);
+  sideFlow.classList.toggle('visible',scrollY>window.innerHeight*.6);
+});
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in-view');obs.unobserve(en.target)}})},{threshold:.12});
+document.querySelectorAll('.exp-item').forEach((el,i)=>{el.style.transitionDelay=`${i*.08}s`;obs.observe(el)});
+
+// ═══ PORTFOLIO CAROUSEL ═══
+(()=>{
+const carousel=document.getElementById('port-carousel');
+const cards=carousel.querySelectorAll('.port-card');
+const dotsWrap=document.getElementById('carousel-dots');
+const prevBtn=document.getElementById('carousel-prev');
+const nextBtn=document.getElementById('carousel-next');
+const total=cards.length;
+let current=0;
+
+// Create dots
+for(let i=0;i<total;i++){
+  const d=document.createElement('button');
+  d.className='carousel-dot'+(i===0?' active':'');
+  d.setAttribute('aria-label','Go to item '+(i+1));
+  d.addEventListener('click',()=>scrollTo(i));
+  dotsWrap.appendChild(d);
+}
+const dots=dotsWrap.querySelectorAll('.carousel-dot');
+
+function scrollTo(idx){
+  current=Math.max(0,Math.min(total-1,idx));
+  cards[current].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+  updateDots();
+}
+function updateDots(){
+  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+prevBtn.addEventListener('click',()=>scrollTo(current-1));
+nextBtn.addEventListener('click',()=>scrollTo(current+1));
+
+// Update dots on scroll
+let scrollTimeout;
+carousel.addEventListener('scroll',()=>{
+  clearTimeout(scrollTimeout);
+  scrollTimeout=setTimeout(()=>{
+    const scrollLeft=carousel.scrollLeft;
+    const cardWidth=cards[0].offsetWidth+22; // gap
+    current=Math.round(scrollLeft/cardWidth);
+    current=Math.max(0,Math.min(total-1,current));
+    updateDots();
+  },80);
+});
+})();
+</script>
+</body>
+</html>

@@ -14,6 +14,7 @@ html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(
 .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;pointer-events:none;text-align:center;padding:2rem}
 .hero-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(3.2rem,9vw,7.5rem);color:rgba(12,18,24,.97);letter-spacing:-.02em;line-height:1.05;text-shadow:0 0 24px rgba(240,232,216,.9),0 0 48px rgba(240,232,216,.5),0 0 80px rgba(240,232,216,.3)}
 .hero-tagline{font-family:'Outfit',sans-serif;font-weight:400;font-size:clamp(1.1rem,2.5vw,1.55rem);color:rgba(10,18,22,.85);margin-top:1em;letter-spacing:.18em;text-transform:uppercase;text-shadow:0 0 18px rgba(240,232,216,1),0 0 36px rgba(240,232,216,.9),0 0 60px rgba(240,232,216,.6)}
+.hero-subcopy{font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(.88rem,1.6vw,1.05rem);color:rgba(15,22,28,.55);margin-top:.8em;max-width:560px;line-height:1.7;text-shadow:0 0 14px rgba(240,232,216,.9),0 0 30px rgba(240,232,216,.6)}
 .hero-scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;pointer-events:auto}
 .hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.25);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;font-weight:400}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scaleY(.6);opacity:.3}50%{transform:scaleY(1);opacity:.8}}
@@ -39,25 +40,36 @@ a.port-card{text-decoration:none;color:inherit;display:flex;flex-direction:colum
 a.port-card:hover .port-demo{background:var(--ocean-mid);color:#fff}
 .skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.55);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
 .exp-subrole {
-  margin-top: 18px;
-  padding-left: 18px;
-  border-left: 2px solid rgba(60, 60, 60, 0.12);
+  margin-top: 1.2rem;
+  padding-left: 1.2rem;
+  border-left: 1.5px solid var(--sand-warm);
+  position: relative;
 }
 
 .exp-subhead {
-  margin-bottom: 6px;
-  font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ocean-mid);
+  margin-bottom: .4rem;
 }
 
 .exp-subrole p {
-  margin: 0 0 10px;
+  font-size: .88rem;
+  line-height: 1.7;
+  color: var(--text-mid);
+  font-weight: 300;
+  margin: 0 0 .6rem;
+}
+
+.exp-subrole p:last-child {
+  margin-bottom: 0;
 }
 
 .exp-item .exp-summary {
-  margin-bottom: 16px;
-  max-width: 980px;
+  max-width: 700px;
+  margin-bottom: .2rem;
 }
  .voices-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.voice-card{background:#fff;padding:2rem;border-radius:10px;position:relative;border:1px solid rgba(0,0,0,.03)}.voice-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--ocean-light);opacity:.2;position:absolute;top:.6rem;left:1.2rem;line-height:1}.voice-text{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:.8rem}.voice-source{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
 .contact-center{text-align:center;padding-bottom:3rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
@@ -73,9 +85,9 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 
   <div class="hero-content">
     <h1 class="hero-name">Mariana Samayoa<br>Martinez</h1>
-    <p class="hero-tagline">I work at the intersection of strategy, systems, and impact.</p>
+    <p class="hero-tagline">Strategy · Systems · Impact</p>
     <p class="hero-subcopy">
-      I focus on how ideas move from concept to execution across teams, turning complex priorities into structures, decisions, and work that holds.
+      I turn complex priorities into structures that hold across teams, time, and change.
     </p>
   </div>
 
@@ -85,7 +97,6 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
       <span class="scroll-line"></span>
     </a>
   </div>
-</section>
 </section>
 <section class="content-section" id="about">
 <div class="section-marker">About</div>

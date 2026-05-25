@@ -18,12 +18,37 @@ html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(
 .hero-scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;pointer-events:auto}
 .hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.25);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;font-weight:400}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scaleY(.6);opacity:.3}50%{transform:scaleY(1);opacity:.8}}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:all .5s}nav.scrolled{background:rgba(242,235,224,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.05)}.nav-mark{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:rgba(12,18,24,.85);text-decoration:none;letter-spacing:.03em;transition:color .4s}nav.scrolled .nav-mark{color:var(--text-dark)}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(15,22,28,.55);text-decoration:none;font-weight:400;transition:color .3s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}.nav-links a:hover::after{width:100%}nav.scrolled .nav-links a{color:var(--text-light)}.nav-links a:hover{color:var(--accent)}
-#side-flow{position:fixed;left:0;top:0;width:48px;height:100vh;z-index:10;pointer-events:none;opacity:0;transition:opacity .8s}#side-flow.visible{opacity:1}#side-flow canvas{display:block;width:48px;height:100vh}
+
+/* ── WORDMARK (top-left, replaces top bar) ── */
+.wordmark{position:fixed;top:1.6rem;left:1.8rem;z-index:100;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;letter-spacing:.02em;text-decoration:none;color:rgba(12,18,24,.55);line-height:1.15;transition:color .4s,opacity .4s;opacity:0;pointer-events:none}
+.wordmark.show{opacity:1;pointer-events:auto}
+.wordmark span{display:block;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:.15rem;font-family:'Outfit',sans-serif}
+.wordmark:hover{color:var(--text-dark)}
+
+/* ── VERTICAL NAV (right edge) ── */
+.dotnav{position:fixed;right:1.7rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:1.15rem;opacity:0;pointer-events:none;transition:opacity .6s}
+.dotnav.show{opacity:1;pointer-events:auto}
+.dotnav a{display:flex;align-items:center;justify-content:flex-end;gap:.7rem;text-decoration:none;height:14px}
+.dotnav .dn-label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-light);font-weight:500;opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s,color .3s;white-space:nowrap}
+.dotnav .dn-dot{position:relative;width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:transparent;border:1px solid var(--text-light);transition:all .35s cubic-bezier(.22,1,.36,1)}
+.dotnav a:hover .dn-label{opacity:1;transform:none;color:var(--text-dark)}
+.dotnav a:hover .dn-dot{border-color:var(--accent);transform:scale(1.15)}
+.dotnav a.active .dn-dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(192,120,72,.14)}
+.dotnav a.active .dn-label{opacity:1;transform:none;color:var(--accent)}
+.dotnav.over-dark .dn-dot{border-color:rgba(255,255,255,.45)}
+.dotnav.over-dark .dn-label{color:rgba(255,255,255,.6)}
+.dotnav.over-dark a:hover .dn-label{color:#fff}
+.dotnav.over-dark a:hover .dn-dot{border-color:var(--accent-light)}
+.dotnav.over-dark a.active .dn-dot{background:var(--accent-light);border-color:var(--accent-light);box-shadow:0 0 0 4px rgba(216,152,104,.22)}
+.dotnav.over-dark a.active .dn-label{color:var(--accent-light)}
+
 .content-section{padding:4rem 2rem 4rem 5.5rem;max-width:1140px;margin:0 auto}.section-marker{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}.section-marker::before{content:'';width:24px;height:1px;background:var(--accent)}.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--text-dark);margin-bottom:1.5rem}
-.about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:2.5rem}.aside-facts{display:flex;flex-direction:column;gap:1.1rem}.fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}
-.exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}.exp-growth{display:inline-block;margin-top:.6rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;padding:.3rem .7rem;border:1px solid rgba(30,96,120,.2);border-radius:4px}
-.port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:none;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400}
+.about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:1.6rem}
+  .aside-facts{display:flex;flex-direction:column;gap:1rem}
+  .aside-note{font-size:.82rem;line-height:1.7;color:var(--text-light);font-weight:300;margin-bottom:2.5rem}.aside-note a{color:var(--ocean-mid);text-decoration:none;border-bottom:1px solid rgba(30,96,120,.3);transition:border-color .3s,color .3s}.aside-note a:hover{color:var(--accent);border-color:var(--accent)}
+  .fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}.fact-statement{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.45;color:var(--text-dark);font-weight:400;margin-top:.25rem}
+.exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}
+.port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:none;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400;font-style:italic}
 .port-carousel-wrap{position:relative;overflow:hidden;margin:0 -2rem;padding:0 2rem}
 .port-carousel{display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:1rem}
 .port-carousel::-webkit-scrollbar{display:none}
@@ -38,51 +63,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;displa
 a.port-card{text-decoration:none;color:inherit;display:flex;flex-direction:column}
 .port-demo{display:inline-block;margin-top:.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;padding:.25rem .6rem;border:1px solid rgba(30,96,120,.2);border-radius:3px;transition:all .3s}
 a.port-card:hover .port-demo{background:var(--ocean-mid);color:#fff}
+#side-flow{position:fixed;left:0;top:0;width:48px;height:100vh;z-index:10;pointer-events:none;opacity:0;transition:opacity .8s}#side-flow.visible{opacity:1}#side-flow canvas{display:block;width:48px;height:100vh}
 .skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.55);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
-.exp-subrole {
-  margin-top: 1.2rem;
-  padding-left: 1.2rem;
-  border-left: 1.5px solid var(--sand-warm);
-  position: relative;
-}
-
-.exp-subhead {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ocean-mid);
-  margin-bottom: .4rem;
-}
-
-.exp-subrole p {
-  font-size: .88rem;
-  line-height: 1.7;
-  color: var(--text-mid);
-  font-weight: 300;
-  margin: 0 0 .6rem;
-}
-
-.exp-subrole p:last-child {
-  margin-bottom: 0;
-}
-
-.exp-item .exp-summary {
-  max-width: 700px;
-  margin-bottom: .2rem;
-}
- .voices-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.voice-card{background:#fff;padding:2rem;border-radius:10px;position:relative;border:1px solid rgba(0,0,0,.03)}.voice-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--ocean-light);opacity:.2;position:absolute;top:.6rem;left:1.2rem;line-height:1}.voice-text{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:.8rem}.voice-source{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.contact-center{text-align:center;padding-bottom:3rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
+.exp-subrole{margin-top:1.2rem;padding-left:1.2rem;border-left:1.5px solid var(--sand-warm);position:relative}
+.exp-subhead{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ocean-mid);margin-bottom:.4rem}
+.exp-subrole p{font-size:.88rem;line-height:1.7;color:var(--text-mid);font-weight:300;margin:0 0 .6rem}
+.exp-subrole p:last-child{margin-bottom:0}
+.exp-subrole.compact p{margin-bottom:0}
+.exp-item .exp-summary{max-width:700px;margin-bottom:.2rem}
+.contact-center{text-align:center;padding-bottom:3rem}.contact-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.25rem;line-height:1.6;color:var(--text-mid);max-width:560px;margin:0 auto 2rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:1rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
 footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);letter-spacing:.1em;border-top:1px solid var(--sand-warm)}
-@media(max-width:768px){#side-flow{display:none}nav{padding:1rem 1.5rem}.nav-links{display:none}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}}
+@media(max-width:768px){#side-flow{display:none}.dotnav{display:none}.wordmark{top:1.1rem;left:1.2rem}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}}
 </style>
 </head>
 <body>
-<nav id="nav"><a href="#" class="nav-mark">Mariana Samayoa Martinez</a><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#experience">Journey</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#skills">Expertise</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<a href="#hero" class="wordmark" id="wordmark">Mariana Samayoa Martinez<span>Strategy · Systems · Impact</span></a>
+
+<nav class="dotnav" id="dotnav">
+  <a href="#about" data-target="about"><span class="dn-label">About</span><span class="dn-dot"></span></a>
+  <a href="#experience" data-target="experience"><span class="dn-label">Journey</span><span class="dn-dot"></span></a>
+  <a href="#portfolio" data-target="portfolio"><span class="dn-label">Portfolio</span><span class="dn-dot"></span></a>
+  <a href="#skills" data-target="skills"><span class="dn-label">Expertise</span><span class="dn-dot"></span></a>
+  <a href="#contact" data-target="contact"><span class="dn-label">Contact</span><span class="dn-dot"></span></a>
+</nav>
+
 <div id="side-flow"><canvas id="side-canvas"></canvas></div>
+
 <section class="hero" id="hero">
   <canvas id="flow-canvas"></canvas>
-
   <div class="hero-content">
     <h1 class="hero-name">Mariana Samayoa<br>Martinez</h1>
     <p class="hero-tagline">Strategy · Systems · Impact</p>
@@ -90,46 +98,36 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
       I turn complex priorities into structures that hold across teams, time, and change.
     </p>
   </div>
-
   <div class="hero-scroll-cue">
-    <a href="#about">
-      <span>Explore</span>
-      <span class="scroll-line"></span>
-    </a>
+    <a href="#about"><span>Explore</span><span class="scroll-line"></span></a>
   </div>
 </section>
+
 <section class="content-section" id="about">
 <div class="section-marker">About</div>
 <div class="about-layout">
 <div class="about-prose">
-
-<p>Growing up in Guatemala during and after the peace process, I saw the long and often invisible work that follows conflict. It shaped how I understand peace: not as a single outcome, but as something sustained through relationships, systems, and everyday decisions.</p>
-
-<p>That perspective has guided my work across philanthropic, multilateral, and nonprofit environments. I operate in the space between strategy and execution, where priorities need to translate into something that actually holds across teams and over time.</p>
-
-<p>Over nine years, I’ve moved from coordinating projects to shaping the systems behind them. I focus on how operational, relational, and strategic layers connect, and I design the structures that allow organizations to work more clearly, consistently, and effectively.</p>
-
-<p>I bring a strong systems instinct and a strategic lens. I see where things are not connecting, and I turn that into processes, tools, or ways of working that make the whole system function better.</p>
-
+<p>Growing up in Guatemala during and after the peace process, I saw the long and often invisible work of reconstruction that follows conflict. It shaped how I understand peace: not as single outcomes, but as changes in underlying structures, relationships, and models. Peace, as I came to understand it, was less an endpoint than an ongoing process, one that depended on shifting the conditions that drove conflict in the first place.</p>
+<p>That understanding shapes how I work across philanthropic, multilateral, and nonprofit settings. I work in the space between strategy and execution, using monitoring, evaluation and learning as sensemaking, designing for deep causes and conditions, and staying iterative, adjusting as needs change.</p>
+<p>Over nine years, I've gone from coordinating projects to building the systems behind them. I pay attention to how the operational, relational, and strategic pieces fit together, and I bring a strong systems instinct and a strategic lens. In practice, that means seeing where things aren't connecting and then helping connect them, leading projects, doing the data analysis and participatory design, intentionally bringing people together, and getting thematic and functional teams working toward the same thing.</p>
 </div>
 
 <div class="about-aside">
-
 <div class="aside-quote">
-"Real change happens in the spaces where systems, people, and decisions meet."
+Complex systems seem to flow on their own. But individual actions reverberate, and intentional ones can change the color of everything.
 </div>
+
+<p class="aside-note">The animation at the <a href="#hero">top of this page</a> is a flow field: thousands of particles tracing invisible currents. Move your cursor to pull the flow toward you. Click to release a new color into the system.</p>
 
 <div class="aside-facts">
 <div class="fact-row">
   <span class="fact-label">Languages</span>
   <span class="fact-value">Spanish (Native) · English (Fluent)</span>
 </div>
-
 <div class="fact-row">
   <span class="fact-label">Focus</span>
-  <span class="fact-value">Strategy · Systems · Impact</span>
+  <span class="fact-statement">Supporting and leading organizations and initiatives working toward sustainable, systemic solutions to complex challenges.</span>
 </div>
-
 </div>
 </div>
 </div>
@@ -137,7 +135,7 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 
 <section class="content-section" id="experience">
   <div class="section-marker">Journey</div>
-  <h2 class="section-title">Building from execution to strategy</h2>
+  <h2 class="section-title">From execution to the systems behind it</h2>
 
   <div class="exp-timeline">
 
@@ -163,20 +161,17 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
           Led process improvement projects, designed internal dashboards and tools, and introduced data visualization to support decision-making and reduce staff workload.
         </p>
         <p>
-          Designed and led the Multilateral Insights Project to surface the organization’s theory of influence, capture cross-team learning, and translate findings into usable institutional knowledge.
+          Designed and led the Multilateral Insights Project to surface the organization's theory of influence, capture cross-team learning, and translate findings into usable institutional knowledge.
         </p>
         <p>
           Also supported the establishment of a sister organization through project management, governance setup, and the development of core policies, SOPs, and operating models.
         </p>
       </div>
 
-      <div class="exp-subrole">
+      <div class="exp-subrole compact">
         <div class="exp-subhead">Initial focus · Grants Management</div>
         <p>
-          Managed multi-year grant portfolios totaling over $3M across multiple funding streams, supporting the full grant lifecycle from proposal development through closeout and follow-on proposals.
-        </p>
-        <p>
-          Advised subgrantees on reporting, financial tracking, and compliance, while maintaining grants and project data to improve decision-making and partner experience.
+          Managed multi-year grant portfolios over $3M across multiple funding streams, supporting the full grant lifecycle and advising subgrantees on reporting, financial tracking, and compliance.
         </p>
       </div>
     </div>
@@ -195,7 +190,7 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
       <div class="exp-role">Head of Development</div>
       <div class="exp-org">Lead-Up International</div>
       <div class="exp-summary">
-        Developed and implemented a monitoring, evaluation, and learning system, secured the organization’s first UN-sponsored grant, and increased fundraising revenue by over 50 percent. Led grant design, budgeting, financial monitoring, and final evaluations to strengthen reporting, accountability, and program impact.
+        Developed and implemented a monitoring, evaluation, and learning system, secured the organization's first UN-sponsored grant, and increased fundraising revenue by over 50 percent. Led grant design, budgeting, financial monitoring, and final evaluations to strengthen reporting, accountability, and program impact.
       </div>
     </div>
 
@@ -213,72 +208,28 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
       <div class="exp-role">Peacebuilding Consultant & Researcher</div>
       <div class="exp-org">Government of Guatemala · Polycentric Learning Group</div>
       <div class="exp-summary">
-        Co-designed Guatemala’s national pedagogical curriculum on Peace and Human Rights Education and conducted organizational culture research that grounded the systems thinking lens I continue to bring to institutional work.
+        Co-designed Guatemala's national pedagogical curriculum on Peace and Human Rights Education and conducted organizational culture research that grounded the systems thinking lens I continue to bring to institutional work.
       </div>
     </div>
 
   </div>
 </section>
-  
+
 <section class="content-section" id="portfolio">
-<h2 class="section-title">What I’ve been building</h2>
+<h2 class="section-title">What I've been building</h2>
 <div class="port-philosophy">
 
-<em>I’ve built across languages, cultures, countries, fields, and teams.</em> That perspective allows me to connect systems, align people, and translate strategy into something that works in practice.
+I focus on where strategy breaks down in execution. Where priorities are unclear, systems don't connect, or teams are working without a shared structure.
 
-I focus on where strategy breaks down in execution. Where priorities are unclear, systems don’t connect, or teams are working without a shared structure.
+I start by understanding what needs to hold across those layers, then shape the systems, processes, and tools that make that possible. <em>I've built across languages, cultures, countries, fields, and teams,</em> and that range is what lets me connect systems, align people, and translate strategy into something that works in practice.
 
-I start by understanding what needs to hold across those layers, then shape the systems, processes, and tools that make that possible.
-
-A few examples below.
+A few examples below, the first three are live tools you can open and use.
 
 </div>
 
 <div class="port-carousel-wrap">
 <div class="port-carousel" id="port-carousel">
- 
-<div class="port-card">
-  <div class="port-visual" id="viz-eval"></div>
-  <div class="port-body">
-    <div class="port-tag">MEL Systems · Evaluation · Research Design</div>
-    <div class="port-name">MEL System Design & Evaluation</div>
-    <div class="port-desc">
-      Designed and implemented the monitoring, evaluation, and learning system for Lead-Up International.
 
-      Established a shared structure across programs for tracking indicators, collecting data, and reporting consistently. Led the final evaluation, integrating qualitative and quantitative insights into a comprehensive report used for organizational reflection and future planning.
-    </div>
-    <div class="port-tech">Excel · Word · Survey tools · Qualitative coding</div>
-  </div>
-</div>
- 
-<div class="port-card">
-  <div class="port-visual" id="viz-dashboard"></div>
-  <div class="port-body">
-    <div class="port-tag">Data Visualization · Convening Strategy</div>
-    <div class="port-name">Participation Insights Dashboard</div>
-    <div class="port-desc">
-      Developed an interactive dashboard tracking participation patterns, regional representation, gender balance, and attendance trends across high-level diplomatic retreats.
-
-      Consolidated fragmented data into a shared view that informed convening strategy, stakeholder engagement, and leadership reporting.
-    </div>
-    <div class="port-tech">Excel (Advanced) · Pivot tables · Dynamic charts</div>
-  </div>
-</div>
- 
-<div class="port-card">
-  <div class="port-visual" id="viz-process"></div>
-  <div class="port-body">
-    <div class="port-tag">Process Improvement · Strategic Prioritization</div>
-    <div class="port-name">Operations Improvement Roadmap</div>
-    <div class="port-desc">
-      Synthesized team feedback into a structured improvement roadmap.
-
-      Designed a prioritization framework that enabled leadership to sequence six initiatives, balancing quick operational improvements with longer-term system redesign.
-    </div>
-    <div class="port-tech">Visual frameworks · Prioritization matrices</div>
-  </div>
-</div>
- 
 <a class="port-card" href="https://marsamayoa.github.io/DEMO-program-toolkit/" target="_blank" rel="noopener">
   <div class="port-visual" id="viz-pm"></div>
   <div class="port-body">
@@ -293,7 +244,7 @@ A few examples below.
     <span class="port-demo">Live demo ↗</span>
   </div>
 </a>
- 
+
 <a class="port-card" href="https://marsamayoa.github.io/DEMO-Leadership-Profile/" target="_blank" rel="noopener">
   <div class="port-visual" id="viz-decision"></div>
   <div class="port-body">
@@ -308,7 +259,7 @@ A few examples below.
     <span class="port-demo">Live demo ↗</span>
   </div>
 </a>
- 
+
 <a class="port-card" href="https://marsamayoa.github.io/DEMO-Stakeholder-map/" target="_blank" rel="noopener">
   <div class="port-visual" id="viz-radar"></div>
   <div class="port-body">
@@ -323,7 +274,49 @@ A few examples below.
     <span class="port-demo">Live demo ↗</span>
   </div>
 </a>
- 
+
+<div class="port-card">
+  <div class="port-visual" id="viz-eval"></div>
+  <div class="port-body">
+    <div class="port-tag">MEL Systems · Evaluation · Research Design</div>
+    <div class="port-name">MEL System Design & Evaluation</div>
+    <div class="port-desc">
+      Designed and implemented the monitoring, evaluation, and learning system for Lead-Up International.
+
+      Established a shared structure across programs for tracking indicators, collecting data, and reporting consistently. Led the final evaluation, integrating qualitative and quantitative insights into a full report used for organizational reflection and future planning.
+    </div>
+    <div class="port-tech">Excel · Word · Survey tools · Qualitative coding</div>
+  </div>
+</div>
+
+<div class="port-card">
+  <div class="port-visual" id="viz-dashboard"></div>
+  <div class="port-body">
+    <div class="port-tag">Data Visualization · Convening Strategy</div>
+    <div class="port-name">Participation Insights Dashboard</div>
+    <div class="port-desc">
+      Developed an interactive dashboard tracking participation patterns, regional representation, gender balance, and attendance trends across high-level diplomatic retreats.
+
+      Consolidated fragmented data into a shared view that informed convening strategy, stakeholder engagement, and leadership reporting.
+    </div>
+    <div class="port-tech">Excel (Advanced) · Pivot tables · Dynamic charts</div>
+  </div>
+</div>
+
+<div class="port-card">
+  <div class="port-visual" id="viz-process"></div>
+  <div class="port-body">
+    <div class="port-tag">Process Improvement · Strategic Prioritization</div>
+    <div class="port-name">Operations Improvement Roadmap</div>
+    <div class="port-desc">
+      Synthesized team feedback into a structured improvement roadmap.
+
+      Designed a prioritization framework that enabled leadership to sequence six initiatives, balancing quick operational improvements with longer-term system redesign.
+    </div>
+    <div class="port-tech">Visual frameworks · Prioritization matrices</div>
+  </div>
+</div>
+
 <div class="port-card">
   <div class="port-visual" id="viz-scrapbook"></div>
   <div class="port-body">
@@ -337,7 +330,7 @@ A few examples below.
     <div class="port-tech">Next.js · React · Supabase</div>
   </div>
 </div>
- 
+
 <div class="port-card">
   <div class="port-visual" id="viz-finance"></div>
   <div class="port-body">
@@ -351,10 +344,10 @@ A few examples below.
     <div class="port-tech">Excel (Advanced) · Financial modeling</div>
   </div>
 </div>
- 
+
 </div>
 </div>
- 
+
 <div class="carousel-nav">
 <button class="carousel-btn" id="carousel-prev" aria-label="Previous">&#8249;</button>
 <div class="carousel-dots" id="carousel-dots"></div>
@@ -371,10 +364,10 @@ A few examples below.
 <div class="skill-col"><h3>Tools & Platforms</h3><ul><li>Salesforce (Advanced)</li><li>Excel (Advanced) · Dashboards & Modeling</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>LLM-Assisted Tool Development</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
 </div></div></section>
 
-
 <section class="content-section contact-center" id="contact">
 <div class="section-marker" style="justify-content:center">Get in Touch</div>
 <h2 class="section-title">Let's connect</h2>
+<p class="contact-lead">If you're into systemic change, have Gloria Anzaldúa and María Lugones on your shelf, or think Hayley Williams is your favorite band, I'd love to talk!</p>
 <div class="contact-row">
 <a href="https://www.linkedin.com/in/mariana-samayoa-mar/" class="contact-pill" target="_blank" rel="noopener">LinkedIn</a>
 </div></section>
@@ -441,13 +434,31 @@ initViz('viz-scrapbook',(c,w,h,t)=>{c.fillStyle='#ede8de';c.fillRect(0,0,w,h);[{
 initViz('viz-radar',(c,w,h,t)=>{c.fillStyle='#2a6050';c.fillRect(0,0,w,h);const cx=w/2,cy=h/2,r=Math.min(w,h)*.35;[[.5,.7,.6,.8,.5,.65,.7,.55,'rgba(110,196,216,.2)'],[.7,.5,.8,.6,.7,.5,.55,.65,'rgba(216,152,104,.2)']].forEach(s=>{c.fillStyle=s[8];c.beginPath();for(let i=0;i<8;i++){const a=Math.PI*2*i/8-Math.PI/2;c.lineTo(cx+Math.cos(a)*r*(s[i]+Math.sin(t*.001+i)*.05),cy+Math.sin(a)*r*(s[i]+Math.sin(t*.001+i)*.05))}c.closePath();c.fill()})});
 initViz('viz-finance',(c,w,h,t)=>{c.fillStyle='#2a4a5a';c.fillRect(0,0,w,h);[{cl:'rgba(110,196,216,.5)',b:.38},{cl:'rgba(216,152,104,.5)',b:.52},{cl:'rgba(200,230,232,.35)',b:.65}].forEach((s,si)=>{c.strokeStyle=s.cl;c.lineWidth=2;c.beginPath();for(let x=0;x<12;x++){const px=w*.08+x*(w*.84/11);const py=h*s.b+Math.sin(t*.0008+x*.5+si*2)*h*.08;x===0?c.moveTo(px,py):c.lineTo(px,py)}c.stroke()})});
 
-// ═══ NAV + SCROLL + SIDE PANEL VISIBILITY ═══
-const nav=document.getElementById('nav');
+// ═══ NAV REVEAL + SCROLL-SPY + SIDE PANEL VISIBILITY ═══
+(()=>{
+const wordmark=document.getElementById('wordmark');
+const dotnav=document.getElementById('dotnav');
 const sideFlow=document.getElementById('side-flow');
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',scrollY>80);
+const links=[...dotnav.querySelectorAll('a')];
+const sections=links.map(l=>document.getElementById(l.dataset.target)).filter(Boolean);
+
+function onScroll(){
+  const past=scrollY>window.innerHeight*.55;
+  wordmark.classList.toggle('show',past);
+  dotnav.classList.toggle('show',past);
   sideFlow.classList.toggle('visible',scrollY>window.innerHeight*.6);
-});
+
+  // scroll-spy: section whose top is closest above the 40% line
+  const line=scrollY+window.innerHeight*.4;
+  let activeIdx=0;
+  sections.forEach((sec,i)=>{if(sec.offsetTop<=line)activeIdx=i});
+  links.forEach((l,i)=>l.classList.toggle('active',i===activeIdx));
+  dotnav.classList.toggle('over-dark',sections[activeIdx]&&sections[activeIdx].classList.contains('skills-band'));
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+})();
+
 const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in-view');obs.unobserve(en.target)}})},{threshold:.12});
 document.querySelectorAll('.exp-item').forEach((el,i)=>{el.style.transitionDelay=`${i*.08}s`;obs.observe(el)});
 
@@ -460,40 +471,20 @@ const prevBtn=document.getElementById('carousel-prev');
 const nextBtn=document.getElementById('carousel-next');
 const total=cards.length;
 let current=0;
-
-// Create dots
 for(let i=0;i<total;i++){
   const d=document.createElement('button');
   d.className='carousel-dot'+(i===0?' active':'');
   d.setAttribute('aria-label','Go to item '+(i+1));
-  d.addEventListener('click',()=>scrollTo(i));
+  d.addEventListener('click',()=>scrollToCard(i));
   dotsWrap.appendChild(d);
 }
 const dots=dotsWrap.querySelectorAll('.carousel-dot');
-
-function scrollTo(idx){
-  current=Math.max(0,Math.min(total-1,idx));
-  cards[current].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
-  updateDots();
-}
-function updateDots(){
-  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
-}
-prevBtn.addEventListener('click',()=>scrollTo(current-1));
-nextBtn.addEventListener('click',()=>scrollTo(current+1));
-
-// Update dots on scroll
+function scrollToCard(idx){current=Math.max(0,Math.min(total-1,idx));cards[current].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});updateDots()}
+function updateDots(){dots.forEach((d,i)=>d.classList.toggle('active',i===current))}
+prevBtn.addEventListener('click',()=>scrollToCard(current-1));
+nextBtn.addEventListener('click',()=>scrollToCard(current+1));
 let scrollTimeout;
-carousel.addEventListener('scroll',()=>{
-  clearTimeout(scrollTimeout);
-  scrollTimeout=setTimeout(()=>{
-    const scrollLeft=carousel.scrollLeft;
-    const cardWidth=cards[0].offsetWidth+22; // gap
-    current=Math.round(scrollLeft/cardWidth);
-    current=Math.max(0,Math.min(total-1,current));
-    updateDots();
-  },80);
-});
+carousel.addEventListener('scroll',()=>{clearTimeout(scrollTimeout);scrollTimeout=setTimeout(()=>{const scrollLeft=carousel.scrollLeft;const cardWidth=cards[0].offsetWidth+22;current=Math.round(scrollLeft/cardWidth);current=Math.max(0,Math.min(total-1,current));updateDots()},80)});
 })();
 </script>
 </body>

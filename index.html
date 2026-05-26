@@ -18,14 +18,10 @@ html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(
 .hero-scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;pointer-events:auto}
 .hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.25);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;font-weight:400}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scaleY(.6);opacity:.3}50%{transform:scaleY(1);opacity:.8}}
-
-/* ── WORDMARK (top-left, replaces top bar) ── */
 .wordmark{position:fixed;top:1.6rem;left:1.8rem;z-index:100;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;letter-spacing:.02em;text-decoration:none;color:rgba(12,18,24,.55);line-height:1.15;transition:color .4s,opacity .4s;opacity:0;pointer-events:none}
 .wordmark.show{opacity:1;pointer-events:auto}
 .wordmark span{display:block;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:.15rem;font-family:'Outfit',sans-serif}
 .wordmark:hover{color:var(--text-dark)}
-
-/* ── VERTICAL NAV (right edge) ── */
 .dotnav{position:fixed;right:1.7rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:1.15rem;opacity:0;pointer-events:none;transition:opacity .6s}
 .dotnav.show{opacity:1;pointer-events:auto}
 .dotnav a{display:flex;align-items:center;justify-content:flex-end;gap:.7rem;text-decoration:none;height:14px}
@@ -41,12 +37,11 @@ html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(
 .dotnav.over-dark a:hover .dn-dot{border-color:var(--accent-light)}
 .dotnav.over-dark a.active .dn-dot{background:var(--accent-light);border-color:var(--accent-light);box-shadow:0 0 0 4px rgba(216,152,104,.22)}
 .dotnav.over-dark a.active .dn-label{color:var(--accent-light)}
-
 .content-section{padding:4rem 2rem 4rem 5.5rem;max-width:1140px;margin:0 auto}.section-marker{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}.section-marker::before{content:'';width:24px;height:1px;background:var(--accent)}.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--text-dark);margin-bottom:1.5rem}
 .about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:1.6rem}
-  .aside-facts{display:flex;flex-direction:column;gap:1rem}
-  .aside-note{font-size:.82rem;line-height:1.7;color:var(--text-light);font-weight:300;margin-bottom:2.5rem}.aside-note a{color:var(--ocean-mid);text-decoration:none;border-bottom:1px solid rgba(30,96,120,.3);transition:border-color .3s,color .3s}.aside-note a:hover{color:var(--accent);border-color:var(--accent)}
-  .fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}.fact-statement{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.45;color:var(--text-dark);font-weight:400;margin-top:.25rem}
+.aside-facts{display:flex;flex-direction:column;gap:1rem}
+.aside-note{font-size:.82rem;line-height:1.7;color:var(--text-light);font-weight:300;margin-bottom:2.5rem}.aside-note a{color:var(--ocean-mid);text-decoration:none;border-bottom:1px solid rgba(30,96,120,.3);transition:border-color .3s,color .3s}.aside-note a:hover{color:var(--accent);border-color:var(--accent)}
+.fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}.fact-statement{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.45;color:var(--text-dark);font-weight:400;margin-top:.25rem}
 .exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}
 .port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:none;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400;font-style:italic}
 .port-carousel-wrap{position:relative;overflow:hidden;margin:0 -2rem;padding:0 2rem}
@@ -397,23 +392,99 @@ function pickColor(x,y,w,h){const n=noise(x*.002,y*.002)*.5+.5;const b=Math.max(
 // ═══ HERO FLOW FIELD ═══
 (()=>{
 const canvas=document.getElementById('flow-canvas'),ctx=canvas.getContext('2d');
-let W,H,dpr,ft=0,mouseX=-1,mouseY=-1;
+let W,H,dpr,ft=0;
+let mouseX=-1,mouseY=-1;
 const colorSpots=[];
-function getAngle(x,y){return noise(x*.0025+ft*.012,y*.0025)*Math.PI*2+noise(x*.005+100,y*.005+ft*.009)*Math.PI*.8+noise(x*.00125+200+ft*.006,y*.00125+200)*Math.PI*.4}
-const SC=500;const strokes=[];
+const ripples=[];
+const dragTrail=[];
+
+function getAngle(x,y){
+  const scrollShift=Math.min(window.scrollY/(window.innerHeight||1),1)*1.5;
+  let a=noise(x*.0025+ft*.012+scrollShift*.2,y*.0025+scrollShift*.1)*Math.PI*2
+    +noise(x*.005+100,y*.005+ft*.009)*Math.PI*.8
+    +noise(x*.00125+200+ft*.006,y*.00125+200)*Math.PI*.4;
+  for(const d of dragTrail){
+    const dx=x-d.x,dy=y-d.y;const dist2=dx*dx+dy*dy;
+    if(dist2<d.r*d.r){const blend=(1-Math.sqrt(dist2)/d.r)*d.strength;a=a*(1-blend)+d.angle*blend}}
+  return a;
+}
+
+const SC=600;const strokes=[];
 class Stroke{constructor(){this.init()}
-init(){this.x=Math.random()*W;this.y=Math.random()*H;const c=this.spotColor()||pickColor(this.x,this.y,W,H);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.035+Math.random()*.065;this.lw=1+Math.random()*3;this.life=0;this.maxLife=80+Math.random()*200;this.speed=.5+Math.random()*.8;this.px=this.x;this.py=this.y}
-spotColor(){for(const s of colorSpots){const dx=this.x-s.x,dy=this.y-s.y;if(dx*dx+dy*dy<s.r*s.r&&Math.random()<.6){const c=s.color;return[c[0]+(Math.random()*20-10)|0,c[1]+(Math.random()*20-10)|0,c[2]+(Math.random()*20-10)|0]}}return null}
-update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||this.x<-20||this.x>W+20||this.y<-20||this.y>H+20){this.init();return}let a=getAngle(this.x,this.y);if(mouseX>=0){const dx=mouseX-this.x,dy=mouseY-this.y;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<300){const pull=Math.pow(1-dist/300,1.5);this.speed=(.5+Math.random()*.8)*(1+pull*2);a=a*(1-pull*.4)+Math.atan2(dy,dx)*pull*.4}}this.x+=Math.cos(a)*this.speed;this.y+=Math.sin(a)*this.speed}
+init(){this.x=Math.random()*W;this.y=Math.random()*H;const c=this.spotColor()||pickColor(this.x,this.y,W,H);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.04+Math.random()*.07;this.lw=1+Math.random()*3;this.life=0;this.maxLife=60+Math.random()*180;this.speed=.6+Math.random()*1;this.px=this.x;this.py=this.y}
+spotColor(){for(const s of colorSpots){const dx=this.x-s.x,dy=this.y-s.y;const fade=Math.max(0,1-s.age/s.maxAge);if(dx*dx+dy*dy<s.r*s.r*fade*fade&&Math.random()<.5){const c=s.color;return[c[0]+(Math.random()*20-10)|0,c[1]+(Math.random()*20-10)|0,c[2]+(Math.random()*20-10)|0]}}return null}
+update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||this.x<-20||this.x>W+20||this.y<-20||this.y>H+20){this.init();return}
+let a=getAngle(this.x,this.y);
+let spd=this.speed;
+for(const rp of ripples){const dx=this.x-rp.x,dy=this.y-rp.y;const dist=Math.sqrt(dx*dx+dy*dy);const ringDist=Math.abs(dist-rp.radius);if(ringDist<rp.width&&dist>1){const push=(1-ringDist/rp.width)*rp.strength;a=a*(1-push*.25)+Math.atan2(dy,dx)*push*.25;spd+=push*1.2}}
+if(mouseX>=0){const dx=mouseX-this.x,dy=mouseY-this.y;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<300){const norm=1-dist/300;const pull=Math.pow(norm,1.5)*.4;a=a*(1-pull)+Math.atan2(dy,dx)*pull;spd*=(1+norm*.8)}}
+this.x+=Math.cos(a)*spd;this.y+=Math.sin(a)*spd}
 draw(){ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.alpha})`;ctx.lineWidth=this.lw;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke()}}
+
 function resize(){dpr=Math.min(devicePixelRatio||1,2);W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#f0e8d8';ctx.fillRect(0,0,W,H);strokes.length=0;for(let i=0;i<SC;i++)strokes.push(new Stroke())}
+
 let fc=0;
-function frame(){fc++;ft=fc*.015;if(fc%100===0){ctx.fillStyle='rgba(240,232,216,.018)';ctx.fillRect(0,0,W,H)}for(const s of strokes){s.update();s.draw()}for(let i=colorSpots.length-1;i>=0;i--){colorSpots[i].age++;if(colorSpots[i].age>600)colorSpots.splice(i,1)}requestAnimationFrame(frame)}
-resize();requestAnimationFrame(frame);window.addEventListener('resize',resize);
+function frame(){fc++;ft=fc*.015;
+if(fc%80===0){ctx.fillStyle='rgba(240,232,216,.015)';ctx.fillRect(0,0,W,H)}
+for(const s of strokes){s.update();s.draw()}
+for(let i=dragTrail.length-1;i>=0;i--){dragTrail[i].strength*=.985;if(dragTrail[i].strength<.01)dragTrail.splice(i,1)}
+for(let i=colorSpots.length-1;i>=0;i--){colorSpots[i].age++;if(colorSpots[i].age>colorSpots[i].maxAge)colorSpots.splice(i,1)}
+for(let i=ripples.length-1;i>=0;i--){const rp=ripples[i];rp.radius+=rp.speed;rp.strength*=.95;if(rp.strength<.005)ripples.splice(i,1)}
+requestAnimationFrame(frame)}
+
+resize();requestAnimationFrame(frame);
+let heroResizeTimer;window.addEventListener('resize',()=>{clearTimeout(heroResizeTimer);heroResizeTimer=setTimeout(resize,300)});
+
 const heroEl=document.querySelector('.hero');
-heroEl.addEventListener('mousemove',e=>{const r=heroEl.getBoundingClientRect();mouseX=(e.clientX-r.left)/r.width*W;mouseY=(e.clientY-r.top)/r.height*H});
-heroEl.addEventListener('mouseleave',()=>{mouseX=-1;mouseY=-1});
-heroEl.addEventListener('click',e=>{const r=heroEl.getBoundingClientRect();const cx=(e.clientX-r.left)/r.width*W,cy=(e.clientY-r.top)/r.height*H;const c=PAL[Math.floor(Math.random()*PAL.length)];colorSpots.push({x:cx,y:cy,r:180+Math.random()*120,color:c,age:0});for(let i=0;i<30;i++){const s=new Stroke();s.x=cx+Math.random()*60-30;s.y=cy+Math.random()*60-30;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.08;s.lw=1.5+Math.random()*3;strokes.push(s)}while(strokes.length>700)strokes.shift()});
+let isDown=false,dragDist=0,prevMX=-1,prevMY=-1,mouseVX=0,mouseVY=0;
+function heroCoords(e){const r=heroEl.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*W,y:(e.clientY-r.top)/r.height*H}}
+heroEl.addEventListener('mousemove',e=>{
+  const p=heroCoords(e);
+  if(prevMX>=0){mouseVX=p.x-prevMX;mouseVY=p.y-prevMY;if(isDown)dragDist+=Math.abs(mouseVX)+Math.abs(mouseVY)}
+  prevMX=p.x;prevMY=p.y;mouseX=p.x;mouseY=p.y;
+  if(isDown&&(Math.abs(mouseVX)>1||Math.abs(mouseVY)>1)){
+    dragTrail.push({x:p.x,y:p.y,angle:Math.atan2(mouseVY,mouseVX),r:100,strength:.7});
+    if(dragTrail.length>80)dragTrail.shift()}
+});
+heroEl.addEventListener('mouseleave',()=>{mouseX=-1;mouseY=-1;prevMX=-1;prevMY=-1;isDown=false;dragDist=0});
+heroEl.addEventListener('mousedown',()=>{isDown=true;dragDist=0});
+heroEl.addEventListener('mouseup',e=>{
+  if(dragDist<15){
+    const p=heroCoords(e);const c=PAL[Math.floor(Math.random()*PAL.length)];
+    colorSpots.push({x:p.x,y:p.y,r:160+Math.random()*100,color:c,age:0,maxAge:1000});
+    ripples.push({x:p.x,y:p.y,radius:0,speed:2.5+Math.random()*1.5,width:50,strength:.6});
+    for(let i=0;i<30;i++){const s=new Stroke();s.x=p.x+Math.random()*50-25;s.y=p.y+Math.random()*50-25;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.08;s.lw=1.5+Math.random()*3;strokes.push(s)}
+    while(strokes.length>800)strokes.shift()}
+  isDown=false;dragDist=0;
+});
+
+// Touch
+const activeTouches=[];
+heroEl.addEventListener('touchstart',e=>{
+  for(const t of e.changedTouches){const r=heroEl.getBoundingClientRect();const x=(t.clientX-r.left)/r.width*W,y=(t.clientY-r.top)/r.height*H;
+    activeTouches.push({id:t.identifier,x,y,dist:0})}
+},{passive:true});
+heroEl.addEventListener('touchmove',e=>{
+  for(const t of e.changedTouches){const at=activeTouches.find(p=>p.id===t.identifier);if(at){
+    const r=heroEl.getBoundingClientRect();const nx=(t.clientX-r.left)/r.width*W,ny=(t.clientY-r.top)/r.height*H;
+    const dx=nx-at.x,dy=ny-at.y;at.dist+=Math.abs(dx)+Math.abs(dy);
+    if(Math.abs(dx)>1||Math.abs(dy)>1){dragTrail.push({x:nx,y:ny,angle:Math.atan2(dy,dx),r:100,strength:.7});if(dragTrail.length>80)dragTrail.shift()}
+    at.x=nx;at.y=ny;mouseX=nx;mouseY=ny}}
+},{passive:true});
+heroEl.addEventListener('touchend',e=>{
+  for(const t of e.changedTouches){const idx=activeTouches.findIndex(p=>p.id===t.identifier);if(idx>=0){const at=activeTouches[idx];
+    if(at.dist<20){const c=PAL[Math.floor(Math.random()*PAL.length)];
+      colorSpots.push({x:at.x,y:at.y,r:140+Math.random()*80,color:c,age:0,maxAge:1000});
+      ripples.push({x:at.x,y:at.y,radius:0,speed:2.5,width:50,strength:.6});
+      for(let i=0;i<20;i++){const s=new Stroke();s.x=at.x+Math.random()*40-20;s.y=at.y+Math.random()*40-20;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.07;s.lw=1.5+Math.random()*2.5;strokes.push(s)}
+      while(strokes.length>800)strokes.shift()}
+    activeTouches.splice(idx,1)}}
+  if(!activeTouches.length){mouseX=-1;mouseY=-1}
+},{passive:true});
+heroEl.addEventListener('touchcancel',e=>{
+  for(const t of e.changedTouches){const idx=activeTouches.findIndex(p=>p.id===t.identifier);if(idx>=0)activeTouches.splice(idx,1)}
+  if(!activeTouches.length){mouseX=-1;mouseY=-1}
+},{passive:true});
 })();
 
 // ═══ SIDE PANEL FLOW FIELD ═══
@@ -428,8 +499,11 @@ update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||th
 draw(){ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.alpha})`;ctx.lineWidth=this.lw;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke()}}
 function resize(){dpr=Math.min(devicePixelRatio||1,2);W=48;H=window.innerHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#f0e8d8';ctx.fillRect(0,0,W,H);strokes.length=0;for(let i=0;i<SC;i++)strokes.push(new S())}
 let fc=0,lastScroll=0;
-function frame(){fc++;ft=fc*.012;const curScroll=window.scrollY;const scrollDelta=Math.abs(curScroll-lastScroll);lastScroll=curScroll;if(scrollDelta>5){const refreshCount=Math.min(8,Math.floor(scrollDelta/10));for(let i=0;i<refreshCount&&i<strokes.length;i++){strokes[Math.floor(Math.random()*strokes.length)].init()}}if(fc%50===0){ctx.fillStyle='rgba(240,232,216,.04)';ctx.fillRect(0,0,W,H)}for(const s of strokes){s.update();s.draw()}requestAnimationFrame(frame)}
-resize();requestAnimationFrame(frame);window.addEventListener('resize',resize);
+function frame(){fc++;ft=fc*.012;const curScroll=window.scrollY;const scrollDelta=Math.abs(curScroll-lastScroll);lastScroll=curScroll;
+if(scrollDelta>20){const refreshCount=Math.min(3,Math.floor(scrollDelta/30));for(let i=0;i<refreshCount&&i<strokes.length;i++){strokes[Math.floor(Math.random()*strokes.length)].init()}}
+if(fc%50===0){ctx.fillStyle='rgba(240,232,216,.04)';ctx.fillRect(0,0,W,H)}for(const s of strokes){s.update();s.draw()}requestAnimationFrame(frame)}
+resize();requestAnimationFrame(frame);
+let sideResizeTimer;window.addEventListener('resize',()=>{clearTimeout(sideResizeTimer);sideResizeTimer=setTimeout(resize,300)});
 })();
 
 // ═══ PORTFOLIO CANVASES ═══
@@ -450,14 +524,11 @@ const dotnav=document.getElementById('dotnav');
 const sideFlow=document.getElementById('side-flow');
 const links=[...dotnav.querySelectorAll('a')];
 const sections=links.map(l=>document.getElementById(l.dataset.target)).filter(Boolean);
-
 function onScroll(){
   const past=scrollY>window.innerHeight*.55;
   wordmark.classList.toggle('show',past);
   dotnav.classList.toggle('show',past);
   sideFlow.classList.toggle('visible',scrollY>window.innerHeight*.6);
-
-  // scroll-spy: section whose top is closest above the 40% line
   const line=scrollY+window.innerHeight*.4;
   let activeIdx=0;
   sections.forEach((sec,i)=>{if(sec.offsetTop<=line)activeIdx=i});

@@ -7,16 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--sand:#f2ebe0;--sand-warm:#e8dcc8;--ocean-abyss:#0c1e2b;--ocean-deep:#14384d;--ocean-mid:#1e6078;--ocean-light:#3a9cb8;--ocean-bright:#6ec4d8;--text-dark:#1a2626;--text-mid:#4a5c5c;--text-light:#7a8e8e;--accent:#c07848;--accent-light:#d89868}
+:root{--sand:#f2ebe0;--sand-warm:#ddd2c0;--sand-mid:#e8dfd2;--ocean-abyss:#0c1e2b;--ocean-deep:#14384d;--ocean-mid:#1e6078;--ocean-light:#3a9cb8;--ocean-bright:#6ec4d8;--text-dark:#1a2626;--text-mid:#3d4f4f;--text-light:#6a7e7e;--accent:#c07848;--accent-light:#d89868}
 html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(--sand);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .hero{position:relative;width:100%;height:100vh;min-height:700px;overflow:hidden;background:#f0e8d8}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--sand));z-index:4;pointer-events:none}
 #flow-canvas{position:absolute;inset:0;width:100%;height:100%}
 .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;pointer-events:none;text-align:center;padding:2rem}
 .hero-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(3.2rem,9vw,7.5rem);color:rgba(12,18,24,.97);letter-spacing:-.02em;line-height:1.05;text-shadow:0 0 24px rgba(240,232,216,.9),0 0 48px rgba(240,232,216,.5),0 0 80px rgba(240,232,216,.3)}
 .hero-tagline{font-family:'Outfit',sans-serif;font-weight:400;font-size:clamp(1.1rem,2.5vw,1.55rem);color:rgba(10,18,22,.85);margin-top:1em;letter-spacing:.18em;text-transform:uppercase;text-shadow:0 0 18px rgba(240,232,216,1),0 0 36px rgba(240,232,216,.9),0 0 60px rgba(240,232,216,.6)}
 .hero-subcopy{font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(.88rem,1.6vw,1.05rem);color:rgba(15,22,28,.55);margin-top:.8em;max-width:560px;line-height:1.7;text-shadow:0 0 14px rgba(240,232,216,.9),0 0 30px rgba(240,232,216,.6)}
 .hero-scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;pointer-events:auto}
-.hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.25);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;font-weight:400}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
+.hero-scroll-cue a{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:rgba(30,40,45,.45);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;text-shadow:0 0 12px rgba(240,232,216,.9),0 0 24px rgba(240,232,216,.7)}.scroll-line{width:1px;height:28px;background:rgba(30,40,45,.15);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scaleY(.6);opacity:.3}50%{transform:scaleY(1);opacity:.8}}
 .wordmark{position:fixed;top:1.6rem;left:1.8rem;z-index:100;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;letter-spacing:.02em;text-decoration:none;color:rgba(12,18,24,.55);line-height:1.15;transition:color .4s,opacity .4s;opacity:0;pointer-events:none}
 .wordmark.show{opacity:1;pointer-events:auto}
@@ -37,18 +38,25 @@ html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(
 .dotnav.over-dark a:hover .dn-dot{border-color:var(--accent-light)}
 .dotnav.over-dark a.active .dn-dot{background:var(--accent-light);border-color:var(--accent-light);box-shadow:0 0 0 4px rgba(216,152,104,.22)}
 .dotnav.over-dark a.active .dn-label{color:var(--accent-light)}
-.content-section{padding:4rem 2rem 4rem 5.5rem;max-width:1140px;margin:0 auto}.section-marker{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}.section-marker::before{content:'';width:24px;height:1px;background:var(--accent)}.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--text-dark);margin-bottom:1.5rem}
-.about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:1.6rem}
+.content-section{padding:4rem 2rem 4rem 5.5rem;max-width:1140px;margin:0 auto}.section-marker{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}.section-marker::before{content:'';width:24px;height:1px;background:var(--accent)}.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--text-dark);margin-bottom:1.5rem}
+.about-layout{display:grid;grid-template-columns:5fr 3fr;gap:3rem;align-items:start}.about-prose p{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;margin-bottom:1.2rem;max-width:65ch}.about-prose p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.8rem;float:left;line-height:.78;margin-right:.1em;margin-top:.06em;color:var(--ocean-mid);font-weight:400}.about-aside{position:sticky;top:7rem}.aside-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;line-height:1.55;color:var(--ocean-mid);border-left:1.5px solid var(--accent-light);padding-left:1.4rem;margin-bottom:1.6rem}
 .aside-facts{display:flex;flex-direction:column;gap:1rem}
 .aside-note{font-size:.82rem;line-height:1.7;color:var(--text-light);font-weight:300;margin-bottom:2.5rem}.aside-note a{color:var(--ocean-mid);text-decoration:none;border-bottom:1px solid rgba(30,96,120,.3);transition:border-color .3s,color .3s}.aside-note a:hover{color:var(--accent);border-color:var(--accent)}
-.fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}.fact-statement{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.45;color:var(--text-dark);font-weight:400;margin-top:.25rem}
-.exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}
-.port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:none;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400;font-style:italic}
+.fact-row{display:flex;flex-direction:column;gap:.1rem}.fact-label{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}.fact-value{font-size:.92rem;color:var(--text-dark);font-weight:300}.fact-statement{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.45;color:var(--text-dark);font-weight:400;margin-top:.25rem}
+.exp-timeline{position:relative;padding-left:2.5rem}.exp-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--ocean-light),var(--sand-warm))}.exp-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);transition:all .7s cubic-bezier(.22,1,.36,1)}.exp-item.in-view{opacity:1;transform:none}.exp-item::before{content:'';position:absolute;left:-2.5rem;top:8px;width:7px;height:7px;border-radius:50%;background:var(--ocean-mid);transform:translateX(-3px);transition:background .3s}.exp-item:hover::before{background:var(--accent)}.exp-date{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.35rem}.exp-role{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem;color:var(--text-dark);margin-bottom:.1rem}.exp-org{font-size:.85rem;color:var(--text-light);font-weight:300;margin-bottom:.7rem}.exp-summary{font-size:.92rem;line-height:1.75;color:var(--text-mid);font-weight:300;max-width:600px}
+.exp-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.exp-item.expanded .exp-detail{max-height:1200px}
+.exp-toggle{display:inline-block;margin-top:.5rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;cursor:pointer;border:none;background:none;padding:.3rem 0;border-bottom:1px solid rgba(30,96,120,.25);transition:color .3s,border-color .3s}
+.exp-toggle:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.exp-toggle::after{content:' +';font-weight:400}
+.exp-item.expanded .exp-toggle::after{content:' −'}
+.port-philosophy{font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:65ch;margin-bottom:2rem}.port-philosophy em{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ocean-mid);font-weight:400;font-style:italic}
 .port-carousel-wrap{position:relative;overflow:hidden;margin:0 -2rem;padding:0 2rem}
+.port-carousel-wrap::after{content:'';position:absolute;right:0;top:0;bottom:1rem;width:60px;background:linear-gradient(90deg,transparent,var(--sand));pointer-events:none;z-index:2}
 .port-carousel{display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:1rem}
 .port-carousel::-webkit-scrollbar{display:none}
 .port-card{background:#fff;border-radius:10px;overflow:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease;cursor:default;flex:0 0 320px;scroll-snap-align:start}
-.port-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(12,30,43,.08)}.port-visual{height:160px;position:relative;overflow:hidden}.port-visual canvas{width:100%;height:100%;display:block}.port-body{padding:1.2rem 1.3rem}.port-tag{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.3rem}.port-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--text-dark);margin-bottom:.3rem}.port-desc{font-size:.82rem;color:var(--text-mid);line-height:1.6;font-weight:300}.port-tech{font-size:.68rem;color:var(--text-light);margin-top:.4rem;font-style:italic}
+.port-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(12,30,43,.08)}.port-visual{height:160px;position:relative;overflow:hidden}.port-visual canvas{width:100%;height:100%;display:block}.port-body{padding:1.2rem 1.3rem}.port-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.3rem}.port-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--text-dark);margin-bottom:.3rem}.port-desc{font-size:.82rem;color:var(--text-mid);line-height:1.6;font-weight:300}.port-tech{font-size:.72rem;color:var(--text-light);margin-top:.4rem;font-style:italic}
 .carousel-nav{display:flex;justify-content:center;gap:.6rem;margin-top:1.2rem}
 .carousel-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--sand-warm);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;color:var(--text-light);font-size:.85rem}
 .carousel-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
@@ -59,7 +67,7 @@ a.port-card{text-decoration:none;color:inherit;display:flex;flex-direction:colum
 .port-demo{display:inline-block;margin-top:.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ocean-mid);font-weight:500;padding:.25rem .6rem;border:1px solid rgba(30,96,120,.2);border-radius:3px;transition:all .3s}
 a.port-card:hover .port-demo{background:var(--ocean-mid);color:#fff}
 #side-flow{position:fixed;left:0;top:0;width:48px;height:100vh;z-index:10;pointer-events:none;opacity:0;transition:opacity .8s}#side-flow.visible{opacity:1}#side-flow canvas{display:block;width:48px;height:100vh}
-.skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.55);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
+.skills-band{background:var(--ocean-abyss);padding:4rem 2rem 4rem 5.5rem}.skills-inner{max-width:1060px;margin:0 auto}.skills-band .section-marker{color:var(--ocean-bright)}.skills-band .section-marker::before{background:var(--ocean-bright)}.skills-band .section-title{color:#fff}.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}.skill-col h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.1rem;color:var(--ocean-bright);margin-bottom:1rem}.skill-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.skill-col li{font-size:.84rem;color:rgba(255,255,255,.68);font-weight:300;padding-left:.9rem;position:relative}.skill-col li::before{content:'\203A';position:absolute;left:0;color:var(--accent-light);font-weight:500}
 .exp-subrole{margin-top:1.2rem;padding-left:1.2rem;border-left:1.5px solid var(--sand-warm);position:relative}
 .exp-subhead{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ocean-mid);margin-bottom:.4rem}
 .exp-subrole p{font-size:.88rem;line-height:1.7;color:var(--text-mid);font-weight:300;margin:0 0 .6rem}
@@ -67,8 +75,17 @@ a.port-card:hover .port-demo{background:var(--ocean-mid);color:#fff}
 .exp-subrole.compact p{margin-bottom:0}
 .exp-item .exp-summary{max-width:700px;margin-bottom:.2rem}
 .contact-center{text-align:center;padding-bottom:3rem}.contact-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.25rem;line-height:1.6;color:var(--text-mid);max-width:560px;margin:0 auto 2rem}.contact-row{display:flex;justify-content:center;gap:2rem;margin-top:1rem;flex-wrap:wrap}.contact-pill{font-size:.88rem;color:var(--text-dark);text-decoration:none;padding:.75rem 2rem;border:1px solid var(--sand-warm);border-radius:40px;transition:all .35s ease;font-weight:300}.contact-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,120,72,.04)}
-footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);letter-spacing:.1em;border-top:1px solid var(--sand-warm)}
-@media(max-width:768px){#side-flow{display:none}.dotnav{display:none}.wordmark{top:1.1rem;left:1.2rem}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}}
+footer{text-align:center;padding:3rem 2rem;font-size:.68rem;color:var(--text-light);letter-spacing:.1em;border-top:1px solid var(--sand-warm)}
+@media(max-width:768px){#side-flow{display:none}.dotnav{display:none}.wordmark{top:1.1rem;left:1.2rem}.content-section{padding:3rem 1.2rem}.about-layout{grid-template-columns:1fr;gap:2rem}.about-aside{position:static}.skills-columns{grid-template-columns:1fr}.skills-band{padding:3rem 1.2rem}.port-card{flex:0 0 280px}
+.mobile-menu-btn{display:block;position:fixed;top:1.1rem;right:1.2rem;z-index:101;width:36px;height:36px;border:none;background:rgba(242,235,224,.85);backdrop-filter:blur(8px);border-radius:50%;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s}
+.mobile-menu-btn.show{opacity:1;pointer-events:auto}
+.mobile-menu-btn span{display:block;width:16px;height:1.5px;background:var(--text-dark);margin:3px auto;transition:all .3s}
+.mobile-nav{position:fixed;top:0;right:0;width:200px;height:auto;background:rgba(242,235,224,.95);backdrop-filter:blur(12px);z-index:100;padding:4.5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:1.2rem;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1);border-radius:0 0 0 12px;box-shadow:-4px 4px 20px rgba(0,0,0,.06)}
+.mobile-nav.open{transform:none}
+.mobile-nav a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;font-weight:500;padding:.4rem 0;transition:color .3s}
+.mobile-nav a:hover{color:var(--accent)}
+}
+@media(min-width:769px){.mobile-menu-btn{display:none}.mobile-nav{display:none}}
 </style>
 </head>
 <body>
@@ -83,6 +100,17 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 </nav>
 
 <div id="side-flow"><canvas id="side-canvas"></canvas></div>
+
+<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#about">About</a>
+  <a href="#experience">Journey</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#skills">Expertise</a>
+  <a href="#contact">Contact</a>
+</nav>
 
 <section class="hero" id="hero">
   <canvas id="flow-canvas"></canvas>
@@ -100,11 +128,12 @@ footer{text-align:center;padding:2rem;font-size:.68rem;color:var(--text-light);l
 
 <section class="content-section" id="about">
 <div class="section-marker">About</div>
+<h2 class="section-title">The in-between is where I work</h2>
 <div class="about-layout">
 <div class="about-prose">
 <p>Growing up in Guatemala during and after the peace process, I saw the long and often invisible work of reconstruction that follows conflict. It shaped how I understand peace: not as single outcomes, but as changes in underlying structures, relationships, and models. Peace, as I came to understand it, was less an endpoint than an ongoing process, one that depended on shifting the conditions that drove conflict in the first place.</p>
-<p>That understanding shapes how I work across philanthropic, multilateral, and nonprofit settings. I work in the space between strategy and execution, using monitoring, evaluation and learning as sensemaking, designing for deep causes and conditions, and staying iterative, adjusting as needs change.</p>
-<p>Over nearly a decade, I've gone from coordinating projects to building the systems behind them. I pay attention to how the operational, relational, and strategic pieces fit together, and I bring a strong systems instinct and a strategic lens. In practice, that means seeing where things aren't connecting and then helping connect them, leading projects, doing the data analysis and participatory design, intentionally bringing people together, and getting thematic and functional teams working toward the same thing.</p>
+<p>That understanding shapes how I work across philanthropic, multilateral, and nonprofit settings. I work in the space between strategy and execution: helping leadership see what's not connecting, framing the choices that matter, and building the systems that let teams move with both speed and integrity. I use monitoring, evaluation, and learning as sensemaking tools, designing for root causes and staying iterative as conditions shift.</p>
+<p>Over nearly a decade, I've gone from coordinating projects to building the systems behind them and advising the people running them. I pay attention to how the operational, relational, and strategic layers fit together, and I move quickly when something needs to change. In practice, that means surfacing what leadership isn't seeing, building tools that turn data into decisions, getting cross-functional teams aligned, and translating complexity into something a board, a funder, or a partner can act on.</p>
 </div>
 
 <div class="about-aside">
@@ -121,7 +150,7 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
 </div>
 <div class="fact-row">
   <span class="fact-label">Focus</span>
-  <span class="fact-statement">Supporting and leading organizations and initiatives working toward sustainable, systemic solutions to complex challenges.</span>
+  <span class="fact-statement">Drawn to organizations using philanthropy, evidence, and systems thinking to drive change at scale.</span>
 </div>
 </div>
 </div>
@@ -134,10 +163,12 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
 
   <div class="exp-timeline">
 
-    <div class="exp-item">
+    <div class="exp-item expanded">
       <div class="exp-date">July 2024 — Present</div>
       <div class="exp-role">Officer</div>
       <div class="exp-org">United Nations Foundation · Global Policy & Multilateral Initiatives</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
 
       <div class="exp-summary">
         Role scope expanded over time from grants management into organizational initiatives, institutional learning, and strategic projects. This progression included managing multi-year grant portfolios over $3M, supporting the full grant lifecycle, leading process improvement efforts, convening high-level retreats on multilateral reform, and coordinating cross-functional work tied to senior leadership priorities.
@@ -146,7 +177,7 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
       <div class="exp-subrole">
         <div class="exp-subhead">Current focus · Strategic Projects & Institutional Delivery</div>
         <p>
-          Serving on a cross-functional delivery team for a flagship initiative on the future of multilateralism. Coordinating strategic projects with the Executive Office and Chief of Staff and supporting senior leadership on priorities that cut across the organization.
+          Serving on a cross-functional delivery team for a flagship initiative on the future of multilateralism. Working directly with the Executive Office and Chief of Staff to move cross-cutting projects forward.
         </p>
       </div>
 
@@ -169,14 +200,18 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
           Managed multi-year grant portfolios over $3M across multiple funding streams, supporting the full grant lifecycle and advising subgrantees on reporting, financial tracking, and compliance.
         </p>
       </div>
+      </div>
     </div>
 
     <div class="exp-item">
       <div class="exp-date">May 2023 — June 2024</div>
       <div class="exp-role">Head of Programs & Operations</div>
       <div class="exp-org">Lead-Up International</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
       <div class="exp-summary">
-        Led bi-national operations across the United States and Guatemala, strengthening grant management, budgeting, compliance, and reporting systems across institutional funders. Designed grantmaking policies, financial reporting systems, and governance frameworks from the ground up, while supporting strategic planning, board engagement, and organizational sustainability.
+        Led bi-national operations across the United States and Guatemala. Built grantmaking policies, financial systems, and governance frameworks from scratch. Worked closely with the Board on funding strategy, organizational direction, risk management, and sustainability, bringing a systemic lens to strategic conversations.
+      </div>
       </div>
     </div>
 
@@ -184,8 +219,11 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
       <div class="exp-date">August 2021 — May 2023</div>
       <div class="exp-role">Head of Development</div>
       <div class="exp-org">Lead-Up International</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
       <div class="exp-summary">
         Developed and implemented a monitoring, evaluation, and learning system, secured the organization's first UN-sponsored grant, and increased fundraising revenue by over 50 percent. Led grant design, budgeting, financial monitoring, and final evaluations to strengthen reporting, accountability, and program impact.
+      </div>
       </div>
     </div>
 
@@ -193,8 +231,11 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
       <div class="exp-date">September 2020 — July 2021</div>
       <div class="exp-role">Education Consultant</div>
       <div class="exp-org">Centro de Enseñanza Educare · Guatemala</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
       <div class="exp-summary">
         Designed teacher appraisal and development strategies and student assessment processes to improve learning outcomes. Evaluated the implementation of the middle-school Peacebuilding Curriculum and led the development of a high-school Peacebuilding Curriculum.
+      </div>
       </div>
     </div>
 
@@ -202,17 +243,23 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
       <div class="exp-date">January 2018 — December 2019</div>
       <div class="exp-role">Technical Assistant, Education Sector</div>
       <div class="exp-org">UNESCO Guatemala</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
       <div class="exp-summary">
         Led the UNESCO-Malala Centers for the Education of Indigenous Girls and Young Women project, managing contracting, consultant oversight, reporting, compliance, and MEL within a multilateral system. Also developed grant proposals and facilitated peacebuilding programming and capacity-building trainings for partners and colleagues.
+      </div>
       </div>
     </div>
 
     <div class="exp-item">
       <div class="exp-date">2016 — 2017</div>
       <div class="exp-role">Peacebuilding Consultant & Researcher</div>
-      <div class="exp-org">Government of Guatemala · Polycentric Learning Group</div>
+      <div class="exp-org">UNESCO Guatemala · Polycentric Learning Group</div>
+      <button class="exp-toggle">Details</button>
+      <div class="exp-detail">
       <div class="exp-summary">
         Co-designed Guatemala's national pedagogical curriculum on Peace and Human Rights Education and conducted organizational culture research that grounded the systems thinking lens I continue to bring to institutional work.
+      </div>
       </div>
     </div>
 
@@ -220,6 +267,7 @@ Complex systems seem to flow on their own. But individual actions reverberate, a
 </section>
 
 <section class="content-section" id="portfolio">
+<div class="section-marker">Portfolio</div>
 <h2 class="section-title">What I've been building</h2>
 <div class="port-philosophy">
 
@@ -322,20 +370,6 @@ A few examples below, the first three are live tools you can open and use.
 </div>
 
 <div class="port-card">
-  <div class="port-visual" id="viz-scrapbook"></div>
-  <div class="port-body">
-    <div class="port-tag">Research · Knowledge Management</div>
-    <div class="port-name">Research Scrapbook App</div>
-    <div class="port-desc">
-      Built a full-stack application for collecting, tagging, and organizing research across academic PDFs.
-
-      Structures fragmented insights into a system that supports synthesis, retrieval, and long-term use of knowledge.
-    </div>
-    <div class="port-tech">Next.js · React · Supabase</div>
-  </div>
-</div>
-
-<div class="port-card">
   <div class="port-visual" id="viz-finance"></div>
   <div class="port-body">
     <div class="port-tag">Financial Planning · Scenario Modeling</div>
@@ -363,9 +397,9 @@ A few examples below, the first three are live tools you can open and use.
 <div class="section-marker">Expertise</div>
 <h2 class="section-title">What I work across</h2>
 <div class="skills-columns">
-<div class="skill-col"><h3>Systems & Strategy</h3><ul><li>Systems Design & Process Improvement</li><li>Cross-Functional Project Delivery</li><li>Strategic Operations & Executive Support</li><li>Convening Design & Facilitation</li><li>Tool Development & Data Visualization</li></ul></div>
+<div class="skill-col"><h3>Systems & Strategy</h3><ul><li>Systems Design & Process Improvement</li><li>Strategic Advisory & Decision Support</li><li>Cross-Functional Project Delivery</li><li>Convening Design & Facilitation</li><li>Tool Development & Data Visualization</li></ul></div>
 <div class="skill-col"><h3>Programs & Stewardship</h3><ul><li>Project & Program Management</li><li>Monitoring, Evaluation & Learning</li><li>Grant Management & Compliance</li><li>Budgeting & Financial Stewardship</li><li>Donor Relations & Stewardship</li></ul></div>
-<div class="skill-col"><h3>Tools & Platforms</h3><ul><li>Salesforce (Advanced)</li><li>Excel (Advanced) · Dashboards & Modeling</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>LLM-Assisted Tool Development</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
+<div class="skill-col"><h3>Tools & Platforms</h3><ul><li>Salesforce (Advanced) · Reports, Dashboards & Workflows</li><li>Excel (Advanced) · Financial Modeling & Analysis</li><li>HTML/CSS/JS · Next.js/React (Self-Taught)</li><li>AI-Assisted Prototyping & Automation</li><li>Financial Edge · Workday · NetSuite</li></ul></div>
 </div></div></section>
 
 <section class="content-section contact-center" id="contact">
@@ -375,7 +409,12 @@ A few examples below, the first three are live tools you can open and use.
 <div class="contact-row">
 <a href="https://www.linkedin.com/in/mariana-samayoa-mar/" class="contact-pill" target="_blank" rel="noopener">LinkedIn</a>
 </div></section>
-<footer>&copy; 2026 Mariana Samayoa Martinez</footer>
+<footer>
+<div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.05rem;color:var(--text-dark);margin-bottom:.4rem">Mariana Samayoa Martinez</div>
+<div style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.2rem">Strategy · Systems · Impact</div>
+<div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.2rem"><a href="https://www.linkedin.com/in/mariana-samayoa-mar/" target="_blank" rel="noopener" style="font-size:.78rem;color:var(--text-light);text-decoration:none;transition:color .3s;font-weight:300" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-light)'">LinkedIn</a></div>
+<div style="font-size:.62rem;color:var(--text-light);letter-spacing:.1em">&copy; 2026 Mariana Samayoa Martinez</div>
+</footer>
 
 <script>
 // ═══ SHARED NOISE ═══
@@ -386,7 +425,7 @@ function fade(t){return t*t*t*(t*(t*6-15)+10)}
 function lerp(a,b,t){return a+t*(b-a)}
 function grad(h,x,y){const v=h&3;return((v&1)?-x:x)+((v&2)?-y:y)}
 function noise(x,y){const xi=Math.floor(x)&255,yi=Math.floor(y)&255,xf=x-Math.floor(x),yf=y-Math.floor(y),u=fade(xf),v=fade(yf);return lerp(lerp(grad(P[P[xi]+yi],xf,yf),grad(P[P[xi+1]+yi],xf-1,yf),u),lerp(grad(P[P[xi]+yi+1],xf,yf-1),grad(P[P[xi+1]+yi+1],xf-1,yf-1),u),v)}
-const PAL=[[245,225,150],[248,218,130],[240,212,175],[242,200,145],[238,190,155],[225,165,145],[208,145,135],[195,130,130],[185,135,145],[165,120,145],[148,165,175],[95,145,165],[75,125,155],[65,110,145],[85,130,160],[115,155,145],[155,178,140],[165,182,155],[205,198,165],[225,215,170]];
+const PAL=[[245,225,150],[248,218,130],[240,212,175],[242,200,145],[238,190,155],[225,165,145],[208,145,135],[195,130,130],[185,135,145],[165,120,145],[148,165,175],[95,145,165],[75,125,155],[65,110,145],[85,130,160],[115,155,145],[130,175,120],[155,178,140],[145,190,130],[165,182,155],[120,160,110],[205,198,165],[225,215,170]];
 function pickColor(x,y,w,h){const n=noise(x*.002,y*.002)*.5+.5;const b=Math.max(0,Math.min(1,y/h));const idx=Math.max(0,Math.min(PAL.length-1,Math.floor((Math.max(0,Math.min(1,n))*.4+b*.6)*(PAL.length-1))));const c=PAL[idx];return[Math.min(255,Math.max(0,c[0]+(Math.random()*16-8))),Math.min(255,Math.max(0,c[1]+(Math.random()*16-8))),Math.min(255,Math.max(0,c[2]+(Math.random()*16-8)))]}
 
 // ═══ HERO FLOW FIELD ═══
@@ -396,23 +435,18 @@ let W,H,dpr,ft=0;
 let mouseX=-1,mouseY=-1;
 const colorSpots=[];
 const ripples=[];
-const dragTrail=[];
 
 function getAngle(x,y){
   const scrollShift=Math.min(window.scrollY/(window.innerHeight||1),1)*1.5;
-  let a=noise(x*.0025+ft*.012+scrollShift*.2,y*.0025+scrollShift*.1)*Math.PI*2
+  return noise(x*.0025+ft*.012+scrollShift*.2,y*.0025+scrollShift*.1)*Math.PI*2
     +noise(x*.005+100,y*.005+ft*.009)*Math.PI*.8
     +noise(x*.00125+200+ft*.006,y*.00125+200)*Math.PI*.4;
-  for(const d of dragTrail){
-    const dx=x-d.x,dy=y-d.y;const dist2=dx*dx+dy*dy;
-    if(dist2<d.r*d.r){const blend=(1-Math.sqrt(dist2)/d.r)*d.strength;a=a*(1-blend)+d.angle*blend}}
-  return a;
 }
 
 const SC=600;const strokes=[];
 class Stroke{constructor(){this.init()}
-init(){this.x=Math.random()*W;this.y=Math.random()*H;const c=this.spotColor()||pickColor(this.x,this.y,W,H);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.04+Math.random()*.07;this.lw=1+Math.random()*3;this.life=0;this.maxLife=60+Math.random()*180;this.speed=.6+Math.random()*1;this.px=this.x;this.py=this.y}
-spotColor(){for(const s of colorSpots){const dx=this.x-s.x,dy=this.y-s.y;const fade=Math.max(0,1-s.age/s.maxAge);if(dx*dx+dy*dy<s.r*s.r*fade*fade&&Math.random()<.5){const c=s.color;return[c[0]+(Math.random()*20-10)|0,c[1]+(Math.random()*20-10)|0,c[2]+(Math.random()*20-10)|0]}}return null}
+init(){this.x=Math.random()*W;this.y=Math.random()*H;const c=this.spotColor()||pickColor(this.x,this.y,W,H);this.r=c[0];this.g=c[1];this.b=c[2];this.alpha=.035+Math.random()*.06;this.lw=1+Math.random()*3;this.life=0;this.maxLife=80+Math.random()*200;this.speed=.5+Math.random()*.8;this.px=this.x;this.py=this.y}
+spotColor(){for(const s of colorSpots){const dx=this.x-s.x,dy=this.y-s.y;const fade=Math.max(0,1-s.age/s.maxAge);if(dx*dx+dy*dy<s.r*s.r*fade&&Math.random()<.7){const c=s.color;return[c[0]+(Math.random()*20-10)|0,c[1]+(Math.random()*20-10)|0,c[2]+(Math.random()*20-10)|0]}}return null}
 update(){this.px=this.x;this.py=this.y;this.life++;if(this.life>this.maxLife||this.x<-20||this.x>W+20||this.y<-20||this.y>H+20){this.init();return}
 let a=getAngle(this.x,this.y);
 let spd=this.speed;
@@ -425,9 +459,7 @@ function resize(){dpr=Math.min(devicePixelRatio||1,2);W=canvas.clientWidth;H=can
 
 let fc=0;
 function frame(){fc++;ft=fc*.015;
-if(fc%80===0){ctx.fillStyle='rgba(240,232,216,.015)';ctx.fillRect(0,0,W,H)}
 for(const s of strokes){s.update();s.draw()}
-for(let i=dragTrail.length-1;i>=0;i--){dragTrail[i].strength*=.985;if(dragTrail[i].strength<.01)dragTrail.splice(i,1)}
 for(let i=colorSpots.length-1;i>=0;i--){colorSpots[i].age++;if(colorSpots[i].age>colorSpots[i].maxAge)colorSpots.splice(i,1)}
 for(let i=ripples.length-1;i>=0;i--){const rp=ripples[i];rp.radius+=rp.speed;rp.strength*=.95;if(rp.strength<.005)ripples.splice(i,1)}
 requestAnimationFrame(frame)}
@@ -442,18 +474,15 @@ heroEl.addEventListener('mousemove',e=>{
   const p=heroCoords(e);
   if(prevMX>=0){mouseVX=p.x-prevMX;mouseVY=p.y-prevMY;if(isDown)dragDist+=Math.abs(mouseVX)+Math.abs(mouseVY)}
   prevMX=p.x;prevMY=p.y;mouseX=p.x;mouseY=p.y;
-  if(isDown&&(Math.abs(mouseVX)>1||Math.abs(mouseVY)>1)){
-    dragTrail.push({x:p.x,y:p.y,angle:Math.atan2(mouseVY,mouseVX),r:100,strength:.7});
-    if(dragTrail.length>80)dragTrail.shift()}
 });
 heroEl.addEventListener('mouseleave',()=>{mouseX=-1;mouseY=-1;prevMX=-1;prevMY=-1;isDown=false;dragDist=0});
 heroEl.addEventListener('mousedown',()=>{isDown=true;dragDist=0});
 heroEl.addEventListener('mouseup',e=>{
   if(dragDist<15){
     const p=heroCoords(e);const c=PAL[Math.floor(Math.random()*PAL.length)];
-    colorSpots.push({x:p.x,y:p.y,r:160+Math.random()*100,color:c,age:0,maxAge:1000});
+    colorSpots.push({x:p.x,y:p.y,r:220+Math.random()*140,color:c,age:0,maxAge:4000});
     ripples.push({x:p.x,y:p.y,radius:0,speed:2.5+Math.random()*1.5,width:50,strength:.6});
-    for(let i=0;i<30;i++){const s=new Stroke();s.x=p.x+Math.random()*50-25;s.y=p.y+Math.random()*50-25;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.08;s.lw=1.5+Math.random()*3;strokes.push(s)}
+    for(let i=0;i<30;i++){const s=new Stroke();s.x=p.x+Math.random()*50-25;s.y=p.y+Math.random()*50-25;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.06+Math.random()*.09;s.lw=1.5+Math.random()*3;s.maxLife=150+Math.random()*250;strokes.push(s)}
     while(strokes.length>800)strokes.shift()}
   isDown=false;dragDist=0;
 });
@@ -468,15 +497,14 @@ heroEl.addEventListener('touchmove',e=>{
   for(const t of e.changedTouches){const at=activeTouches.find(p=>p.id===t.identifier);if(at){
     const r=heroEl.getBoundingClientRect();const nx=(t.clientX-r.left)/r.width*W,ny=(t.clientY-r.top)/r.height*H;
     const dx=nx-at.x,dy=ny-at.y;at.dist+=Math.abs(dx)+Math.abs(dy);
-    if(Math.abs(dx)>1||Math.abs(dy)>1){dragTrail.push({x:nx,y:ny,angle:Math.atan2(dy,dx),r:100,strength:.7});if(dragTrail.length>80)dragTrail.shift()}
     at.x=nx;at.y=ny;mouseX=nx;mouseY=ny}}
 },{passive:true});
 heroEl.addEventListener('touchend',e=>{
   for(const t of e.changedTouches){const idx=activeTouches.findIndex(p=>p.id===t.identifier);if(idx>=0){const at=activeTouches[idx];
     if(at.dist<20){const c=PAL[Math.floor(Math.random()*PAL.length)];
-      colorSpots.push({x:at.x,y:at.y,r:140+Math.random()*80,color:c,age:0,maxAge:1000});
+      colorSpots.push({x:at.x,y:at.y,r:200+Math.random()*120,color:c,age:0,maxAge:4000});
       ripples.push({x:at.x,y:at.y,radius:0,speed:2.5,width:50,strength:.6});
-      for(let i=0;i<20;i++){const s=new Stroke();s.x=at.x+Math.random()*40-20;s.y=at.y+Math.random()*40-20;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.05+Math.random()*.07;s.lw=1.5+Math.random()*2.5;strokes.push(s)}
+      for(let i=0;i<20;i++){const s=new Stroke();s.x=at.x+Math.random()*40-20;s.y=at.y+Math.random()*40-20;s.r=c[0]+(Math.random()*30-15)|0;s.g=c[1]+(Math.random()*30-15)|0;s.b=c[2]+(Math.random()*30-15)|0;s.alpha=.06+Math.random()*.09;s.lw=1.5+Math.random()*2.5;s.maxLife=150+Math.random()*250;strokes.push(s)}
       while(strokes.length>800)strokes.shift()}
     activeTouches.splice(idx,1)}}
   if(!activeTouches.length){mouseX=-1;mouseY=-1}
@@ -513,7 +541,6 @@ initViz('viz-dashboard',(c,w,h,t)=>{c.fillStyle='#2a5a6a';c.fillRect(0,0,w,h);fo
 initViz('viz-process',(c,w,h,t)=>{c.fillStyle='#ede6da';c.fillRect(0,0,w,h);const cl=['#2a7a5a','#d89868','#c0392b','#3a9cb8','#c07848','#1e6078'];for(let i=0;i<6;i++)for(let j=0;j<4;j++){const x=w*.12+i*(w*.76/5),y=h*.15+j*(h*.7/3);const p=Math.sin(t*.001+i*.7+j*.5)*.5+.5;c.fillStyle=cl[(i+j)%6];c.globalAlpha=.3+p*.3;c.beginPath();c.arc(x,y,5+p*4,0,Math.PI*2);c.fill()}c.globalAlpha=1});
 initViz('viz-decision',(c,w,h,t)=>{c.fillStyle='#b87040';c.fillRect(0,0,w,h);const cx=w/2,cy=h/2,r=Math.min(w,h)*.32;c.fillStyle='rgba(255,255,255,.1)';c.beginPath();for(let i=0;i<6;i++){const a=Math.PI*2*i/6-Math.PI/2;c.lineTo(cx+Math.cos(a)*r*(.4+Math.sin(t*.001+i)*.2),cy+Math.sin(a)*r*(.4+Math.sin(t*.001+i)*.2))}c.closePath();c.fill();c.strokeStyle='rgba(255,255,255,.25)';c.lineWidth=1.5;c.stroke()});
 initViz('viz-pm',(c,w,h,t)=>{c.fillStyle='#1e5060';c.fillRect(0,0,w,h);for(let i=0;i<5;i++){const y=28+i*28,s=w*.1+Math.sin(i*1.3)*.1*w,bw=w*(.2+Math.sin(t*.001+i)*.08);c.fillStyle=i===2?'rgba(216,152,104,.5)':'rgba(110,196,216,.35)';c.beginPath();c.roundRect(s,y+6,bw,14,3);c.fill()}});
-initViz('viz-scrapbook',(c,w,h,t)=>{c.fillStyle='#ede8de';c.fillRect(0,0,w,h);[{x:.08,y:.1,w:.36,h:.32},{x:.52,y:.06,w:.4,h:.36},{x:.06,y:.52,w:.42,h:.32},{x:.5,y:.48,w:.44,h:.4}].forEach((b,i)=>{const o=Math.sin(t*.0008+i*1.5)*3;c.fillStyle=i%2?'rgba(192,120,72,.08)':'rgba(42,106,122,.1)';c.beginPath();c.roundRect(b.x*w+o,b.y*h,b.w*w,b.h*h,5);c.fill()})});
 initViz('viz-radar',(c,w,h,t)=>{c.fillStyle='#2a6050';c.fillRect(0,0,w,h);const cx=w/2,cy=h/2,r=Math.min(w,h)*.35;[[.5,.7,.6,.8,.5,.65,.7,.55,'rgba(110,196,216,.2)'],[.7,.5,.8,.6,.7,.5,.55,.65,'rgba(216,152,104,.2)']].forEach(s=>{c.fillStyle=s[8];c.beginPath();for(let i=0;i<8;i++){const a=Math.PI*2*i/8-Math.PI/2;c.lineTo(cx+Math.cos(a)*r*(s[i]+Math.sin(t*.001+i)*.05),cy+Math.sin(a)*r*(s[i]+Math.sin(t*.001+i)*.05))}c.closePath();c.fill()})});
 initViz('viz-finance',(c,w,h,t)=>{c.fillStyle='#2a4a5a';c.fillRect(0,0,w,h);[{cl:'rgba(110,196,216,.5)',b:.38},{cl:'rgba(216,152,104,.5)',b:.52},{cl:'rgba(200,230,232,.35)',b:.65}].forEach((s,si)=>{c.strokeStyle=s.cl;c.lineWidth=2;c.beginPath();for(let x=0;x<12;x++){const px=w*.08+x*(w*.84/11);const py=h*s.b+Math.sin(t*.0008+x*.5+si*2)*h*.08;x===0?c.moveTo(px,py):c.lineTo(px,py)}c.stroke()})});
 
@@ -565,6 +592,22 @@ prevBtn.addEventListener('click',()=>scrollToCard(current-1));
 nextBtn.addEventListener('click',()=>scrollToCard(current+1));
 let scrollTimeout;
 carousel.addEventListener('scroll',()=>{clearTimeout(scrollTimeout);scrollTimeout=setTimeout(()=>{const scrollLeft=carousel.scrollLeft;const cardWidth=cards[0].offsetWidth+22;current=Math.round(scrollLeft/cardWidth);current=Math.max(0,Math.min(total-1,current));updateDots()},80)});
+})();
+// ═══ TIMELINE COLLAPSE/EXPAND ═══
+document.querySelectorAll('.exp-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{btn.closest('.exp-item').classList.toggle('expanded')});
+});
+
+// ═══ MOBILE MENU ═══
+(()=>{
+const btn=document.getElementById('mobile-menu-btn');
+const nav=document.getElementById('mobile-nav');
+if(!btn||!nav)return;
+btn.addEventListener('click',()=>{nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{nav.classList.remove('open')})});
+document.addEventListener('click',e=>{if(!btn.contains(e.target)&&!nav.contains(e.target))nav.classList.remove('open')});
+// Show button on scroll
+window.addEventListener('scroll',()=>{btn.classList.toggle('show',scrollY>window.innerHeight*.55)},{passive:true});
 })();
 </script>
 </body>
